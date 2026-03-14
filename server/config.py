@@ -27,7 +27,7 @@ class Settings:
 
 settings = Settings(
     flask_host=os.getenv("FLASK_HOST", "0.0.0.0"),
-    flask_port=int(os.getenv("FLASK_PORT", "5000")),
+    flask_port=int(os.getenv("FLASK_PORT", "5004")),
     flask_debug=_as_bool(os.getenv("FLASK_DEBUG"), default=True),
     elastic_host=os.getenv("ELASTIC_HOST", "http://localhost:9200"),
     elastic_api_key=os.getenv("ELASTIC_API_KEY", ""),

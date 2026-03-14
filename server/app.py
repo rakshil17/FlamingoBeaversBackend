@@ -9,6 +9,7 @@ from elastic_service import (
     delete_course,
     get_course,
     seed_startup_course,
+    generate_degree_plan,
 )
 
 
@@ -108,6 +109,40 @@ def clear_course_database() -> tuple[dict, int]:
         result = clear_courses()
     except Exception as exc:
         return {"error": f"Failed to clear courses index: {exc}"}, 500
+
+    return result, 200
+
+
+@app.post("/agent/plan")
+def get_degree_plan() -> tuple[dict, int]:
+    payload = request.get_json(silent=True) or {}
+    
+    degree = payload.get("degree", "")
+    subjects_per_term = payload.get("subjects_per_term", 3)
+    career_goal = payload.get("career_goal", "")
+    target_companies = payload.get("target_companies", "")
+    
+    if not degree or not career_goal:
+        return {"error": "'degree' and 'career_goal' are required."}, 400
+        
+    try:
+        if isinstance(subjects_per_term, str):
+            subjects_per_term = int(subjects_per_term)
+        # Fallback to 3 if somehow 0 or invalid
+        if subjects_per_term <= 0:
+            subjects_per_term = 3
+    except ValueError:
+        return {"error": "'subjects_per_term' must be a number."}, 400
+
+    try:
+        result = generate_degree_plan(
+            degree=degree,
+            subjects_per_term=subjects_per_term,
+            career_goal=career_goal,
+            target_companies=target_companies
+        )
+    except Exception as exc:
+        return {"error": f"Failed to generate degree plan: {exc}"}, 500
 
     return result, 200
 

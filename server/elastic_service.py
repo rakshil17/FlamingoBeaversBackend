@@ -34,6 +34,12 @@ INDEX_MAPPINGS = {
         "semester": {"type": "keyword"},
         "tags": {"type": "keyword"},
         "prerequisites": {"type": "keyword"},
+        "semantic_text": {"type": "text"},
+        "text_embedding": {
+            "properties": {
+                "predicted_value": {"type": "sparse_vector"}
+            }
+        }
     }
 }
 
@@ -54,10 +60,40 @@ def _as_dict(response: object) -> dict:
 
 
 def ensure_index_exists() -> dict:
+    # Attempt to create the ingest pipeline first
+    pipeline_id = "elser-v2-pipeline"
+    try:
+        client.ingest.put_pipeline(
+            id=pipeline_id,
+            body={
+                "description": "ELSER v2 pipeline for course descriptions",
+                "processors": [
+                    {
+                        "inference": {
+                            "model_id": "my-elser-model",
+                            "field_map": {
+                                "semantic_text": "text_field"
+                            },
+                            "target_field": "text_embedding"
+                        }
+                    }
+                ]
+            }
+        )
+    except Exception as e:
+        print(f"Warning: Failed to create or update ELSER pipeline: {e}")
+
     if client.indices.exists(index=settings.elastic_index):
         return {"index": settings.elastic_index, "created": False}
 
-    create_response = client.indices.create(index=settings.elastic_index)
+    create_response = client.indices.create(
+        index=settings.elastic_index,
+        body={
+            "settings": {
+                "default_pipeline": pipeline_id
+            }
+        }
+    )
     mapping_response = client.indices.put_mapping(
         index=settings.elastic_index,
         body=INDEX_MAPPINGS,
@@ -76,6 +112,20 @@ def add_course(course: dict) -> dict:
         raise ValueError("'course_code' is required in course payload.")
 
     ensure_index_exists()
+
+    if client.exists(index=settings.elastic_index, id=course_code):
+        return {
+            "result": "already_exists",
+            "id": course_code,
+            "index": settings.elastic_index,
+        }
+
+    # Prepare semantic text for ELSER
+    title = course.get("title", "")
+    desc = course.get("description", "")
+    tags = " ".join(course.get("tags", []))
+    course["semantic_text"] = f"{title} {desc} {tags}".strip()
+
     response = client.index(
         index=settings.elastic_index,
         id=course_code,
@@ -141,6 +191,72 @@ def seed_startup_course() -> dict:
     }
 
 
+def generate_degree_plan(
+    degree: str,
+    subjects_per_term: int,
+    career_goal: str,
+    target_companies: str
+) -> dict:
+    ensure_index_exists()
+    
+    # We want at least enough courses for a basic degree, say 24 courses
+    total_courses_needed = 24
+    
+    # Construct a natural language query for ELSER
+    semantic_query = (
+        f"I am studying {degree} and I want to become a {career_goal} "
+        f"working at {target_companies}."
+    ).strip()
+    
+    # Build a sparse_vector query targeting the ELSER embeddings
+    query = {
+        "size": total_courses_needed,
+        "query": {
+            "sparse_vector": {
+                "field": "text_embedding.predicted_value",
+                "inference_id": "my-elser-model",
+                "query": semantic_query
+            }
+        }
+    }
+    
+    # Execute the search
+    response = client.search(index=settings.elastic_index, body=query)
+    hits = response.get("hits", {}).get("hits", [])
+    
+    # Extract just the course data
+    courses = [hit.get("_source", {}) for hit in hits]
+    
+    if not courses:
+        return {
+            "recommended_plan": [],
+            "cheapest_plan": [],
+            "message": "No courses found matching your criteria."
+        }
+    
+    # Logic to chunk courses into terms
+    def chunk_into_terms(course_list, n):
+        terms = []
+        for i in range(0, len(course_list), n):
+            terms.append({
+                "term_number": (i // n) + 1,
+                "courses": course_list[i:i + n]
+            })
+        return terms
+
+    # Recommended plan: based directly on search relevance (Elasticsearch score)
+    recommended_plan = chunk_into_terms(courses, subjects_per_term)
+    
+    # Cheapest plan: sort courses by credits (ascending) as a proxy for cheapest
+    # Courses with no 'credits' default to a high number to put them at the end
+    cheapest_courses = sorted(courses, key=lambda c: c.get("credits", 999))
+    cheapest_plan = chunk_into_terms(cheapest_courses, subjects_per_term)
+    
+    return {
+        "recommended_plan": recommended_plan,
+        "cheapest_plan": cheapest_plan
+    }
+
 __all__ = [
     "NotFoundError",
     "add_course",
@@ -149,4 +265,5 @@ __all__ = [
     "delete_course",
     "get_course",
     "seed_startup_course",
+    "generate_degree_plan",
 ]
