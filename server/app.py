@@ -1,31 +1,34 @@
 from flask import Flask, request
-from elasticsearch import Elasticsearch, NotFoundError
 
-from server.config import settings
+from config import settings
+from elastic_service import (
+    NotFoundError,
+    add_course,
+    clear_courses,
+    client,
+    delete_course,
+    get_course,
+    seed_startup_course,
+)
 
 
 app = Flask(__name__)
+startup_seed_status = {
+    "attempted": False,
+    "seeded": False,
+}
 
-
-def _create_es_client() -> Elasticsearch:
-    auth = None
-    if settings.elastic_username and settings.elastic_password:
-        auth = (settings.elastic_username, settings.elastic_password)
-
-    return Elasticsearch(
-        settings.elastic_host,
-        basic_auth=auth,
-        verify_certs=settings.elastic_verify_certs,
-        request_timeout=30,
-    )
-
-
-es_client = _create_es_client()
-
-
-def _ensure_index_exists() -> None:
-    if not es_client.indices.exists(index=settings.elastic_index):
-        es_client.indices.create(index=settings.elastic_index)
+try:
+    startup_seed_status = {
+        "attempted": True,
+        **seed_startup_course(),
+    }
+except Exception as exc:  # pragma: no cover - startup should not crash API
+    startup_seed_status = {
+        "attempted": True,
+        "seeded": False,
+        "error": str(exc),
+    }
 
 
 @app.get("/")
@@ -34,14 +37,15 @@ def root() -> tuple[dict, int]:
         "service": "flamingo-beavers-backend",
         "status": "ok",
         "index": settings.elastic_index,
+        "startup_seed": startup_seed_status,
     }, 200
 
 
 @app.get("/health")
 def health() -> tuple[dict, int]:
     try:
-        elastic_ok = bool(es_client.ping())
-        info = es_client.info() if elastic_ok else {}
+        elastic_ok = bool(client.ping())
+        info = client.info() if elastic_ok else {}
     except Exception as exc:  # pragma: no cover - best effort health signal
         return {
             "status": "degraded",
@@ -57,54 +61,55 @@ def health() -> tuple[dict, int]:
     }, 200 if elastic_ok else 503
 
 
-@app.post("/documents")
-def create_document() -> tuple[dict, int]:
+@app.post("/courses")
+def create_course() -> tuple[dict, int]:
     payload = request.get_json(silent=True) or {}
-    doc_id = payload.get("id")
-    content = payload.get("content")
 
-    if not isinstance(content, dict):
-        return {
-            "error": "Payload must include a JSON object under 'content'."
-        }, 400
+    if not isinstance(payload, dict):
+        return {"error": "Payload must be a JSON object."}, 400
 
     try:
-        _ensure_index_exists()
-        if doc_id:
-            result = es_client.index(
-                index=settings.elastic_index,
-                id=doc_id,
-                document=content,
-            )
-        else:
-            result = es_client.index(
-                index=settings.elastic_index,
-                document=content,
-            )
+        result = add_course(payload)
+    except ValueError as exc:
+        return {"error": str(exc)}, 400
     except Exception as exc:
-        return {"error": f"Failed to index document: {exc}"}, 500
+        return {"error": f"Failed to add course: {exc}"}, 500
 
-    return {
-        "result": result.get("result"),
-        "id": result.get("_id"),
-        "index": result.get("_index"),
-    }, 201
+    return result, 201
 
 
-@app.get("/documents/<doc_id>")
-def get_document(doc_id: str) -> tuple[dict, int]:
+@app.get("/courses/<course_code>")
+def read_course(course_code: str) -> tuple[dict, int]:
     try:
-        result = es_client.get(index=settings.elastic_index, id=doc_id)
+        result = get_course(course_code)
     except NotFoundError:
-        return {"error": "Document not found."}, 404
+        return {"error": "Course not found."}, 404
     except Exception as exc:
-        return {"error": f"Failed to fetch document: {exc}"}, 500
+        return {"error": f"Failed to fetch course: {exc}"}, 500
 
-    return {
-        "id": result.get("_id"),
-        "index": result.get("_index"),
-        "content": result.get("_source", {}),
-    }, 200
+    return result, 200
+
+
+@app.delete("/courses/<course_code>")
+def remove_course(course_code: str) -> tuple[dict, int]:
+    try:
+        result = delete_course(course_code)
+    except NotFoundError:
+        return {"error": "Course not found."}, 404
+    except Exception as exc:
+        return {"error": f"Failed to delete course: {exc}"}, 500
+
+    return result, 200
+
+
+@app.delete("/courses")
+def clear_course_database() -> tuple[dict, int]:
+    try:
+        result = clear_courses()
+    except Exception as exc:
+        return {"error": f"Failed to clear courses index: {exc}"}, 500
+
+    return result, 200
 
 
 if __name__ == "__main__":

@@ -1,105 +1,79 @@
 # FlamingoBeaversBackend
 
-Backend API for Flamingo Beavers, wired to Elasticsearch.
+Flask backend with Elasticsearch for university course management.
 
-## What This Setup Includes
+## Do We Need One Index?
 
-- Flask API server
-- Elasticsearch (single-node, local development)
-- Kibana for browsing/search debugging
-- Docker Compose for one-command startup
-- Local Python run option without Docker for the app
+Yes. For this scope, one index is correct:
 
-## Project Structure
+- `university-courses`
 
-```
-.
-|-- .env.example
-|-- .gitignore
-|-- Dockerfile
-|-- docker-compose.yml
-|-- requirements.txt
-`-- server/
-		|-- __init__.py
-		|-- app.py
-		`-- config.py
-```
+Use one index while all records are courses with a stable schema. Split into more indices only when you have clearly different entity types, retention rules, or scaling requirements.
 
-## Environment Setup
+## Run
 
-1. `.env` is already included for local development defaults.
-2. Update values if needed.
-
-Key values:
-
-- `ELASTIC_HOST` (local default: `http://localhost:9200`)
-- `ELASTIC_INDEX` (default: `flamingo-beavers`)
-- `FLASK_PORT` (default: `5000`)
-
-## Run With Docker (Recommended)
-
-Start all services:
+From project root:
 
 ```bash
-docker compose up --build
+python server/app.py
 ```
 
-Services:
+## Environment Variables
 
-- Flask API: `http://localhost:5000`
-- Elasticsearch: `http://localhost:9200`
-- Kibana: `http://localhost:5601`
+Only the essentials are used now:
 
-Stop:
+- `FLASK_DEBUG`
+- `FLASK_HOST`
+- `FLASK_PORT`
+- `ELASTIC_HOST`
+- `ELASTIC_API_KEY`
+- `ELASTIC_INDEX`
+
+## Startup Behavior
+
+When the app starts, it automatically creates the index (if missing) and upserts one example course (`CS101`).
+
+## Routes
+
+- `GET /` basic status plus startup seed result
+- `GET /health` Elasticsearch connectivity status
+- `POST /courses` add or update a course (uses `course_code` as doc id)
+- `GET /courses/<course_code>` get one course
+- `DELETE /courses/<course_code>` delete one course
+- `DELETE /courses` clear all course documents in the index
+
+## Terminal Test Commands (Fake Data)
+
+Run these while the app is running.
+
+### 1) Add a new course
 
 ```bash
-docker compose down
+curl -X POST http://localhost:5000/courses \
+  -H "Content-Type: application/json" \
+  -d '{"course_code":"CS350","title":"Database Systems","description":"Relational modeling, SQL, transactions, and indexing.","department":"Computer Science","instructor":"Dr. Noor Ali","credits":4,"level":"undergraduate","semester":"Spring 2027","tags":["databases","sql"],"prerequisites":["CS240"]}'
 ```
 
-Stop and remove volumes:
+### 2) Get course info
 
 ```bash
-docker compose down -v
+curl http://localhost:5000/courses/CS350
 ```
 
-## Run Flask Locally (Elastic Still via Docker)
-
-1. Start Elasticsearch + Kibana only:
+### 3) Delete one course
 
 ```bash
-docker compose up elasticsearch kibana
+curl -X DELETE http://localhost:5000/courses/CS350
 ```
 
-2. Create and activate a virtual environment.
-3. Install dependencies:
+### 4) Clear the database (all course docs)
 
 ```bash
-pip install -r requirements.txt
+curl -X DELETE http://localhost:5000/courses
 ```
 
-4. Run app:
+### 5) Verify startup-seeded course
 
 ```bash
-flask --app server.app run --host=0.0.0.0 --port=5000
-```
-
-## API Endpoints
-
-- `GET /` basic service info
-- `GET /health` app + Elasticsearch health
-- `POST /documents` index a document
-- `GET /documents/<doc_id>` fetch a document by id
-
-### Create Document Example
-
-```bash
-curl -X POST http://localhost:5000/documents \
-	-H "Content-Type: application/json" \
-	-d '{"id":"1","content":{"name":"Flamingo Beavers","type":"demo"}}'
-```
-
-### Get Document Example
-
-```bash
-curl http://localhost:5000/documents/1
+curl http://localhost:5000/courses/CS101
 ```
