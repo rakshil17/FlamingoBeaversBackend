@@ -11,9 +11,15 @@ from webdriver_manager.chrome import ChromeDriverManager
 import argparse
 import requests
 
-# Base URLs for the target programs
+# Base URLs for the target programs (Handbook)
 URL_COMP_SCI = "https://www.handbook.unsw.edu.au/undergraduate/programs/2026/3778"
 URL_SOFT_ENG = "https://www.handbook.unsw.edu.au/undergraduate/specialisations/2026/SENGAH"
+
+# UNSW Timetable index pages — static HTML listing ALL courses by subject area
+TIMETABLE_SUBJECT_URLS = [
+    "https://timetable.unsw.edu.au/2026/COMPKENS.html",  # All COMP courses
+    "https://timetable.unsw.edu.au/2026/SENGKENS.html",  # All SENG courses
+]
 
 def _setup_driver() -> webdriver.Chrome:
     """Configures and returns a headless Chrome webdriver."""
@@ -54,10 +60,29 @@ def fetch_core_course_codes(driver: webdriver.Chrome, program_url: str) -> Set[s
     return unique_codes
 
 
+def fetch_timetable_codes(subject_urls: List[str]) -> Set[str]:
+    """Fetches all course codes from the static UNSW timetable index pages (no Selenium needed)."""
+    all_codes = set()
+    for url in subject_urls:
+        print(f"Fetching timetable index from: {url}")
+        try:
+            res = requests.get(url, timeout=15)
+            res.raise_for_status()
+            codes = set(re.findall(r'[A-Z]{4}[0-9]{4}', res.text))
+            all_codes.update(codes)
+            print(f"Found {len(codes)} unique course codes from timetable.")
+        except Exception as e:
+            print(f"Warning: Could not fetch timetable page {url}: {e}")
+    return all_codes
+
+
 def scrape_course_details(driver: webdriver.Chrome, course_code: str) -> Dict:
     """Navigates to a specific course page and extracts its data."""
-    url = f"https://www.handbook.unsw.edu.au/undergraduate/courses/2026/{course_code}"
-    print(f"  -> Scraping: {course_code} - {url}")
+    # COMP9xxx are postgrad courses — use the postgraduate handbook URL
+    course_num = int(course_code[4:])
+    level = "postgraduate" if course_num >= 5000 else "undergraduate"
+    url = f"https://www.handbook.unsw.edu.au/{level}/courses/2026/{course_code}"
+    print(f"  -> Scraping: {course_code} ({level}) - {url}")
     driver.get(url)
     
     course_data = {
@@ -67,11 +92,11 @@ def scrape_course_details(driver: webdriver.Chrome, course_code: str) -> Dict:
         "department": "Computer Science and / or Software Eng",
         "instructor": "UNSW Faculty",
         "credits": 6,  # Default, will try to parse if possible
-        "level": "undergraduate",
+        "level": level,
         "semester": "",
         "tags": [],
         "prerequisites": [],
-        "fees": ""
+        "fees": {"domestic": "", "international": "", "hecs": ""}
     }
     
     try:
@@ -178,21 +203,24 @@ def push_to_elastic(course_data: Dict):
 
 def main():
     parser = argparse.ArgumentParser(description="UNSW Course Scraper")
-    parser.add_argument("--limit", type=int, default=15, help="Max number of courses to scrape (-1 for all)")
+    parser.add_argument("--limit", type=int, default=300, help="Max number of courses to scrape (-1 for all)")
     parser.add_argument("--no-push", action="store_true", help="Disable automatic pushing to ElasticSearch")
     args = parser.parse_args()
 
     driver = _setup_driver()
     
-    # 1. Grab all relevant course codes across CS and SE specs
+    # 1a. Grab course codes from the Handbook program pages (CS + SE)
     all_codes = set()
     all_codes.update(fetch_core_course_codes(driver, URL_COMP_SCI))
     all_codes.update(fetch_core_course_codes(driver, URL_SOFT_ENG))
     
-    codes_list = list(all_codes)
-    # Filter strictly for COMP/SENG/MATH courses if desired, or keep all
+    # 1b. Also pull ALL COMP/SENG codes from the static UNSW timetable index
+    all_codes.update(fetch_timetable_codes(TIMETABLE_SUBJECT_URLS))
+    
+    codes_list = sorted(all_codes)
+    # Filter strictly for COMP/SENG/MATH/DESN/ENGG courses
     codes_list = [c for c in codes_list if c.startswith(("COMP", "SENG", "MATH", "DESN", "ENGG"))]
-    print(f"\nFiltered to {len(codes_list)} target technical courses.")
+    print(f"\nTotal unique courses discovered: {len(codes_list)}")
     
     if args.limit > 0:
         codes_list = codes_list[:args.limit]
