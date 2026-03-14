@@ -1,296 +1,37 @@
 [
   {
-    "course_code": "COMP2041",
-    "title": "Software Construction: Techniques and Tools",
-    "description": "This course is designed for students who have mastered the basics of programming. It aims to broaden your knowledge of techniques and tools for software construction. It covers: Unix filters, shell scripting and Python (for programming), git (for version control), docker (for portable deployment), package managers (for configuration and deployment). At the end of this course, you should be able to build moderate-sized software systems and configure them so that others can download and deploy your work.",
+    "course_code": "COMP1010",
+    "title": "The Art of Computing",
+    "description": "This course aims to provide a grounding in computational thinking for anyone who wants one. It assumes no previous programming background, but does assume that all incoming students have used digital devices, such as tablets and smart phones, for a range of tasks (e.g. social networking, reading, essay writing, etc.). The course will use Python as the programming medium and use real world examples from a variety of domains to motivate understanding.",
     "department": "Computer Science and / or Software Eng",
     "instructor": "UNSW Faculty",
     "credits": 6,
     "level": "undergraduate",
-    "semester": "Term 1, Term 2",
+    "semester": "Term 1",
     "tags": [
       "computer science",
-      "software",
-      "design",
-      "systems"
+      "software"
     ],
     "prerequisites": [
-      "DPST1091",
-      "COMP1921",
       "COMP1511",
-      "COMP1917"
+      "DPST1091"
     ],
     "fees": {
       "domestic": "$7620",
       "international": "$7620",
       "hecs": "$1193"
     },
-    "enrolment_rules": "COMP1511 OR DPST1091 OR COMP1917 OR COMP1921",
-    "semantic_text": "Software Construction: Techniques and Tools This course is designed for students who have mastered the basics of programming. It aims to broaden your knowledge of techniques and tools for software construction. It covers: Unix filters, shell scripting and Python (for programming), git (for version control), docker (for portable deployment), package managers (for configuration and deployment). At the end of this course, you should be able to build moderate-sized software systems and configure them so that others can download and deploy your work. computer science software design systems"
+    "enrolment_rules": "Exclusion: COMP1511/DPST1091"
   },
   {
-    "course_code": "COMP4953",
-    "title": "Research Thesis C",
-    "description": "The thesis provides an opportunity for you to bring together engineering principles learned over the previous years of study, and apply these principles to innovatively solve problems, which may the development of  specific designs and/or the investigation of various research hypotheses. Thesis projects are complex, open-ended problems that allow room for your creativity, and the acquisition, analysis, and interpretation of results. Typically, the project you work with will have multiple possible solutions or conclusions and sufficient complexity to require a degree of project planning. The thesis requires you to formulate problems in engineering terms, manage an engineering project and find solutions by applying engineering methods. You will also develop an ability to work in a research and development environment.",
-    "department": "Computer Science and / or Software Eng",
-    "instructor": "UNSW Faculty",
-    "credits": 4,
-    "level": "undergraduate",
-    "semester": "Term 1, Term 2, Term 3",
-    "tags": [
-      "computer science",
-      "software",
-      "design"
-    ],
-    "prerequisites": [
-      "COMP4952"
-    ],
-    "fees": {
-      "domestic": "$5080",
-      "international": "$5080",
-      "hecs": "$795"
-    },
-    "enrolment_rules": "COMP4952",
-    "semantic_text": "Research Thesis C The thesis provides an opportunity for you to bring together engineering principles learned over the previous years of study, and apply these principles to innovatively solve problems, which may the development of  specific designs and/or the investigation of various research hypotheses. Thesis projects are complex, open-ended problems that allow room for your creativity, and the acquisition, analysis, and interpretation of results. Typically, the project you work with will have multiple possible solutions or conclusions and sufficient complexity to require a degree of project planning. The thesis requires you to formulate problems in engineering terms, manage an engineering project and find solutions by applying engineering methods. You will also develop an ability to work in a research and development environment. computer science software design"
-  },
-  {
-    "course_code": "MATH1141",
-    "title": "Higher Mathematics 1A",
-    "description": "This course builds on high school calculus-based courses to provide a solid foundation for further study in mathematics for students in STEM disciplines. It is taken by undergraduate students typically in their first year and is usually followed by MATH1241 or MATH1231 and, as the higher version of MATH1131, has greater depth and a greater emphasis on proof and rigorous argument than MATH1131. The Calculus half of the course develops a deeper understanding of continuous and differentiable functions and introduces the Riemann integral. It shows how theorems such as the Maximum-Minimum Theorem, the Intermediate Value Theorem and Mean Value Theorems are used to rigorously justify properties of common functions and to solve both theoretical and applied problems. The Algebra half of the course introduces vectors and matrices and the solution of systems of linear equations by Gaussian elimination which paves the way for linear algebra in later courses. Technology is used throughout the course through use of the Maple computer algebra system and students producing a typeset assignment. Students are assumed to have a good understanding of NSW HSC Mathematics Extension 1 and 2 subjects.",
+    "course_code": "COMP1337",
+    "title": "Foundations of Cyber Security",
+    "description": "This course provides students with an introduction to the rapidly growing field of cyber security. It is suitable for anyone who wishes to understand more about this fascinating and rapidly emerging global challenge. The course provides an overview of the main aspects of contemporary cyber security, including cyber crime, cyber criminals, cyber war, scams, exploitation, human errors and mistakes, vulnerabilities, responding to emergencies, sensible risk assessment and risk management.",
     "department": "Computer Science and / or Software Eng",
     "instructor": "UNSW Faculty",
     "credits": 6,
     "level": "undergraduate",
-    "semester": "Term 1, Term 3",
-    "tags": [
-      "computer science",
-      "software",
-      "systems"
-    ],
-    "prerequisites": [],
-    "fees": {
-      "domestic": "$7830",
-      "international": "$7830",
-      "hecs": "$593"
-    },
-    "enrolment_rules": "",
-    "semantic_text": "Higher Mathematics 1A This course builds on high school calculus-based courses to provide a solid foundation for further study in mathematics for students in STEM disciplines. It is taken by undergraduate students typically in their first year and is usually followed by MATH1241 or MATH1231 and, as the higher version of MATH1131, has greater depth and a greater emphasis on proof and rigorous argument than MATH1131. The Calculus half of the course develops a deeper understanding of continuous and differentiable functions and introduces the Riemann integral. It shows how theorems such as the Maximum-Minimum Theorem, the Intermediate Value Theorem and Mean Value Theorems are used to rigorously justify properties of common functions and to solve both theoretical and applied problems. The Algebra half of the course introduces vectors and matrices and the solution of systems of linear equations by Gaussian elimination which paves the way for linear algebra in later courses. Technology is used throughout the course through use of the Maple computer algebra system and students producing a typeset assignment. Students are assumed to have a good understanding of NSW HSC Mathematics Extension 1 and 2 subjects. computer science software systems"
-  },
-  {
-    "course_code": "MATH1231",
-    "title": "Mathematics 1B",
-    "description": "This course builds on MATH1131 or MATH1141 to provide a solid foundation for further study in mathematics for students in STEM disciplines. It is taken by undergraduate students typically in their first year. The Calculus half of the course covers partial derivatives and multivariable chain rules, further techniques of integration and applications of integration, ordinary differential equations, sequences, series and Taylor series. The Linear Algebra half of the course introduces abstract linear algebra, covering vector spaces and linear transformations and eigenvalue and eigenvectors. In addition, there is a topic on probability distributions. Technology is used throughout the course through use of the Maple computer algebra system and students producing a typeset assignment that focuses on written communication skills.",
-    "department": "Computer Science and / or Software Eng",
-    "instructor": "UNSW Faculty",
-    "credits": 6,
-    "level": "undergraduate",
-    "semester": "Term 1, Term 2, Term 3",
-    "tags": [
-      "computer science",
-      "software",
-      "systems"
-    ],
-    "prerequisites": [
-      "DPST1013",
-      "MATH1141",
-      "MATH1131"
-    ],
-    "fees": {
-      "domestic": "$7830",
-      "international": "$7830",
-      "hecs": "$593"
-    },
-    "enrolment_rules": "MATH1131 or MATH1141 or DPST1013",
-    "semantic_text": "Mathematics 1B This course builds on MATH1131 or MATH1141 to provide a solid foundation for further study in mathematics for students in STEM disciplines. It is taken by undergraduate students typically in their first year. The Calculus half of the course covers partial derivatives and multivariable chain rules, further techniques of integration and applications of integration, ordinary differential equations, sequences, series and Taylor series. The Linear Algebra half of the course introduces abstract linear algebra, covering vector spaces and linear transformations and eigenvalue and eigenvectors. In addition, there is a topic on probability distributions. Technology is used throughout the course through use of the Maple computer algebra system and students producing a typeset assignment that focuses on written communication skills. computer science software systems"
-  },
-  {
-    "course_code": "COMP1521",
-    "title": "Computer Systems Fundamentals",
-    "description": "This course introduces students to how computer systems are structured in terms of basic electronic components, how they are used to implement procedural programs, and how they are structured as a collection of software layers. It introduces students to low-level software layers such as operating systems, and introduces concurrency concepts. The goal is to give students a solid understanding of what happens when high-level programs are executed, as a basis for further study in important areas of computing such as computer architecture, operating systems.",
-    "department": "Computer Science and / or Software Eng",
-    "instructor": "UNSW Faculty",
-    "credits": 6,
-    "level": "undergraduate",
-    "semester": "Term 1, Term 2, Term 3",
-    "tags": [
-      "computer science",
-      "software",
-      "systems"
-    ],
-    "prerequisites": [
-      "DPST1091",
-      "COMP1911",
-      "COMP1511",
-      "COMP1917"
-    ],
-    "fees": {
-      "domestic": "$7620",
-      "international": "$7620",
-      "hecs": "$1193"
-    },
-    "enrolment_rules": "COMP1511 or DPST1091 or COMP1911 or COMP1917",
-    "semantic_text": "Computer Systems Fundamentals This course introduces students to how computer systems are structured in terms of basic electronic components, how they are used to implement procedural programs, and how they are structured as a collection of software layers. It introduces students to low-level software layers such as operating systems, and introduces concurrency concepts. The goal is to give students a solid understanding of what happens when high-level programs are executed, as a basis for further study in important areas of computing such as computer architecture, operating systems. computer science software systems"
-  },
-  {
-    "course_code": "ENGG2600",
-    "title": "Engineering Vertically Integrated Project",
-    "description": "This course is designed for highly motivated undergraduates seeking the opportunity to integrate specific curricular and co-curricular components into their undergraduate program, to provide them with enhanced preparation and experience in the areas of Leadership and Project Management as it relates to engineering research and/or design, and thus giving them a headstart when seeking employment.",
-    "department": "Computer Science and / or Software Eng",
-    "instructor": "UNSW Faculty",
-    "credits": 2,
-    "level": "undergraduate",
-    "semester": "Term 1, Term 2, Term 3",
-    "tags": [
-      "computer science",
-      "software",
-      "design"
-    ],
-    "prerequisites": [],
-    "fees": {
-      "domestic": "$2540",
-      "international": "$2540",
-      "hecs": "$398"
-    },
-    "enrolment_rules": "Please refer to the course overview section for information on prerequisite requirements.",
-    "semantic_text": "Engineering Vertically Integrated Project This course is designed for highly motivated undergraduates seeking the opportunity to integrate specific curricular and co-curricular components into their undergraduate program, to provide them with enhanced preparation and experience in the areas of Leadership and Project Management as it relates to engineering research and/or design, and thus giving them a headstart when seeking employment. computer science software design"
-  },
-  {
-    "course_code": "ENGG3060",
-    "title": "Rehabilitation and Assistive Technology",
-    "description": "\"With the right\u202ftechnology, we will have a world where 'I\u202fcan't' becomes 'I can\u2019\u2026 but that technology you can only get if someone makes it.\"\u202f (Jeff Paradee, Disability Advocate)",
-    "department": "Computer Science and / or Software Eng",
-    "instructor": "UNSW Faculty",
-    "credits": 3,
-    "level": "undergraduate",
-    "semester": "Term 1, Term 2, Term 3",
-    "tags": [
-      "computer science",
-      "software"
-    ],
-    "prerequisites": [],
-    "fees": {
-      "domestic": "",
-      "international": "",
-      "hecs": ""
-    },
-    "enrolment_rules": "Pre-requisite: Completion of 66 UOC",
-    "semantic_text": "Rehabilitation and Assistive Technology \"With the right\u202ftechnology, we will have a world where 'I\u202fcan't' becomes 'I can\u2019\u2026 but that technology you can only get if someone makes it.\"\u202f (Jeff Paradee, Disability Advocate) computer science software"
-  },
-  {
-    "course_code": "MATH1081",
-    "title": "Discrete Mathematics",
-    "description": "This course will enhance students' research, inquiry, and analytical thinking abilities and provide them with the mathematical language and mathematical techniques to unravel many seemingly unrelated problems. The course content addresses five major pillars of discrete mathematics: set theory, number theory, proofs and logic, combinatorics, and graph theory. The theory covered will provide a good foundation for understanding many problems that arise in all science disciplines, particularly higher mathematics and computer science.",
-    "department": "Computer Science and / or Software Eng",
-    "instructor": "UNSW Faculty",
-    "credits": 6,
-    "level": "undergraduate",
-    "semester": "Term 1, Term 2, Term 3",
-    "tags": [
-      "computer science",
-      "software"
-    ],
-    "prerequisites": [],
-    "fees": {
-      "domestic": "$7830",
-      "international": "$7830",
-      "hecs": "$593"
-    },
-    "enrolment_rules": "",
-    "semantic_text": "Discrete Mathematics This course will enhance students' research, inquiry, and analytical thinking abilities and provide them with the mathematical language and mathematical techniques to unravel many seemingly unrelated problems. The course content addresses five major pillars of discrete mathematics: set theory, number theory, proofs and logic, combinatorics, and graph theory. The theory covered will provide a good foundation for understanding many problems that arise in all science disciplines, particularly higher mathematics and computer science. computer science software"
-  },
-  {
-    "course_code": "COMP6131",
-    "title": "Software Security Analysis",
-    "description": "This course is designed to provide a systematic exploration of automated source code analysis and verification techniques, with the aim of gaining hands-on experience in implementing code analysis tools to identify common yet important software vulnerabilities in software systems. By taking this course, students can put static analysis and verification theories and advanced techniques into practice. They will be able to build source code analysis tools (e.g., written in C++) based on modern compilers and popular open-source frameworks to scan, comprehend and detect programming mistakes and vulnerabilities with the purpose of enhancing code quality and security.",
-    "department": "Computer Science and / or Software Eng",
-    "instructor": "UNSW Faculty",
-    "credits": 6,
-    "level": "undergraduate",
-    "semester": "Term 2",
-    "tags": [
-      "computer science",
-      "software",
-      "design",
-      "systems"
-    ],
-    "prerequisites": [
-      "MATH1081",
-      "COMP2521",
-      "COMP6771"
-    ],
-    "fees": {
-      "domestic": "$7620",
-      "international": "$7620",
-      "hecs": "$1193"
-    },
-    "enrolment_rules": "MATH1081 and (COMP6771 or a mark of at least 70 in COMP2521)",
-    "semantic_text": "Software Security Analysis This course is designed to provide a systematic exploration of automated source code analysis and verification techniques, with the aim of gaining hands-on experience in implementing code analysis tools to identify common yet important software vulnerabilities in software systems. By taking this course, students can put static analysis and verification theories and advanced techniques into practice. They will be able to build source code analysis tools (e.g., written in C++) based on modern compilers and popular open-source frameworks to scan, comprehend and detect programming mistakes and vulnerabilities with the purpose of enhancing code quality and security. computer science software design systems"
-  },
-  {
-    "course_code": "COMP3311",
-    "title": "Database Systems",
-    "description": "This course aims to explore in depth the practice of developing database applications and the theory behind relational database systems. It will also give a very brief overview of the technologies used in implementing database management systems and the past, present and future of database systems.",
-    "department": "Computer Science and / or Software Eng",
-    "instructor": "UNSW Faculty",
-    "credits": 6,
-    "level": "undergraduate",
-    "semester": "Term 1, Term 2",
-    "tags": [
-      "computer science",
-      "software",
-      "data",
-      "systems"
-    ],
-    "prerequisites": [
-      "COMP2521",
-      "COMP1927"
-    ],
-    "fees": {
-      "domestic": "$7620",
-      "international": "$7620",
-      "hecs": "$1193"
-    },
-    "enrolment_rules": "COMP2521 or COMP1927",
-    "semantic_text": "Database Systems This course aims to explore in depth the practice of developing database applications and the theory behind relational database systems. It will also give a very brief overview of the technologies used in implementing database management systems and the past, present and future of database systems. computer science software data systems"
-  },
-  {
-    "course_code": "COMP2521",
-    "title": "Data Structures and Algorithms",
-    "description": "The aim of this course is to get you to think like a computer scientist . This certainly sounds like a noble goal... but what does it really mean? How does a scientist , let alone a computer scientist, actually think?",
-    "department": "Computer Science and / or Software Eng",
-    "instructor": "UNSW Faculty",
-    "credits": 6,
-    "level": "undergraduate",
-    "semester": "Summer Term, Term 1, Term 2, Term 3",
-    "tags": [
-      "computer science",
-      "software",
-      "data",
-      "algorithms"
-    ],
-    "prerequisites": [
-      "DPST1091",
-      "COMP1921",
-      "COMP1511",
-      "COMP1917"
-    ],
-    "fees": {
-      "domestic": "$7620",
-      "international": "$7620",
-      "hecs": "$1193"
-    },
-    "enrolment_rules": "COMP1511 or DPST1091 or COMP1917 or COMP1921",
-    "semantic_text": "Data Structures and Algorithms The aim of this course is to get you to think like a computer scientist . This certainly sounds like a noble goal... but what does it really mean? How does a scientist , let alone a computer scientist, actually think? computer science software data algorithms"
-  },
-  {
-    "course_code": "COMP4920",
-    "title": "Professional Issues and Ethics in Information Technology",
-    "description": "In this course we will explore ethical issues for computer science, widely conceived. We will examine in detail the nature of ethical claims/moral judgements themselves, and how it is that our beliefs about their nature can affect our understanding of the ethical issues relating to computer science that we have examined so far. We will learn about ethical arguments, and how to construct and evaluate them.",
-    "department": "Computer Science and / or Software Eng",
-    "instructor": "UNSW Faculty",
-    "credits": 6,
-    "level": "undergraduate",
-    "semester": "Term 1, Term 3",
+    "semester": "Term 1",
     "tags": [
       "computer science",
       "software"
@@ -301,81 +42,6 @@
       "international": "$7620",
       "hecs": "$1193"
     },
-    "enrolment_rules": "Completion of 18 UOC of COMP**** courses",
-    "semantic_text": "Professional Issues and Ethics in Information Technology In this course we will explore ethical issues for computer science, widely conceived. We will examine in detail the nature of ethical claims/moral judgements themselves, and how it is that our beliefs about their nature can affect our understanding of the ethical issues relating to computer science that we have examined so far. We will learn about ethical arguments, and how to construct and evaluate them. computer science software"
-  },
-  {
-    "course_code": "SENG2011",
-    "title": "Workshop on Reasoning about Programs",
-    "description": "Reasoning involves taking what facts you know (or assume) to be true, and calculating what the consequences will be. Reasoning is what everyone does every day in real life: for example, *!#!* the traffic is bad this morning! I'm going to be late for work. My work says if employees arrive late, they must work overtime. I'll be working overtime tonight. This course applies reasoning to computer programming. It involves analysing the behaviour of the program using mathematical logic and creating a specification. This specification allows you to prove exactly what the program does. It means it is impossible for the program to contain any kind of programming error. This has important consequences for software development. It means, for example, a great deal less testing is required because you, the programmer, will be able to proudly promise that the program that you have produced is \"perfect\".",
-    "department": "Computer Science and / or Software Eng",
-    "instructor": "UNSW Faculty",
-    "credits": 6,
-    "level": "undergraduate",
-    "semester": "Term 3",
-    "tags": [
-      "computer science",
-      "software"
-    ],
-    "prerequisites": [
-      "MATH1081"
-    ],
-    "fees": {
-      "domestic": "$7620",
-      "international": "$7620",
-      "hecs": "$1193"
-    },
-    "enrolment_rules": "MATH1081",
-    "semantic_text": "Workshop on Reasoning about Programs Reasoning involves taking what facts you know (or assume) to be true, and calculating what the consequences will be. Reasoning is what everyone does every day in real life: for example, *!#!* the traffic is bad this morning! I'm going to be late for work. My work says if employees arrive late, they must work overtime. I'll be working overtime tonight. This course applies reasoning to computer programming. It involves analysing the behaviour of the program using mathematical logic and creating a specification. This specification allows you to prove exactly what the program does. It means it is impossible for the program to contain any kind of programming error. This has important consequences for software development. It means, for example, a great deal less testing is required because you, the programmer, will be able to proudly promise that the program that you have produced is \"perfect\". computer science software"
-  },
-  {
-    "course_code": "DESN2000",
-    "title": "Engineering Design and Professional Practice",
-    "description": "Design is one of the critical foundations of engineering and a main component in creating value. A good engineer has complex technical skills, but also creative skills, project management and teamworking skills, and knowledge of professional ethical standards in design.",
-    "department": "Computer Science and / or Software Eng",
-    "instructor": "UNSW Faculty",
-    "credits": 6,
-    "level": "undergraduate",
-    "semester": "Term 2, Term 3",
-    "tags": [
-      "computer science",
-      "software",
-      "design"
-    ],
-    "prerequisites": [],
-    "fees": {
-      "domestic": "$7620",
-      "international": "$7620",
-      "hecs": "$1193"
-    },
-    "enrolment_rules": "Please refer to the course overview section for information on prerequisite requirements.",
-    "semantic_text": "Engineering Design and Professional Practice Design is one of the critical foundations of engineering and a main component in creating value. A good engineer has complex technical skills, but also creative skills, project management and teamworking skills, and knowledge of professional ethical standards in design. computer science software design"
-  },
-  {
-    "course_code": "COMP3331",
-    "title": "Computer Networks and Applications",
-    "description": "This course is an introductory course on computer networks aimed at students with a computer science / electrical engineering background. You will focus on common paradigms and protocols used in present data communication. Through lectures, in-class activities, labs and assignments, you will learn the theory and application of:",
-    "department": "Computer Science and / or Software Eng",
-    "instructor": "UNSW Faculty",
-    "credits": 6,
-    "level": "undergraduate",
-    "semester": "Term 1, Term 2, Term 3",
-    "tags": [
-      "computer science",
-      "software",
-      "data"
-    ],
-    "prerequisites": [
-      "COMP2521",
-      "MTRN2500",
-      "COMP1927"
-    ],
-    "fees": {
-      "domestic": "$7620",
-      "international": "$7620",
-      "hecs": "$1193"
-    },
-    "enrolment_rules": "COMP1927 or COMP2521 or MTRN2500",
-    "semantic_text": "Computer Networks and Applications This course is an introductory course on computer networks aimed at students with a computer science / electrical engineering background. You will focus on common paradigms and protocols used in present data communication. Through lectures, in-class activities, labs and assignments, you will learn the theory and application of: computer science software data"
+    "enrolment_rules": "Enrolment in 3777 Bachelor of Cyber Security"
   }
 ]
