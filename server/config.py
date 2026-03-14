@@ -23,6 +23,7 @@ class Settings:
     elastic_host: str
     elastic_api_key: str
     elastic_index: str
+    elastic_degree_index: str
 
 
 settings = Settings(
@@ -32,4 +33,5 @@ settings = Settings(
     elastic_host=os.getenv("ELASTIC_HOST", "http://localhost:9200"),
     elastic_api_key=os.getenv("ELASTIC_API_KEY", ""),
     elastic_index=os.getenv("ELASTIC_INDEX", "university-courses"),
+    elastic_degree_index=os.getenv("ELASTIC_DEGREE_INDEX", "unsw-degrees"),
 )
