@@ -49,89 +49,155 @@ INDEX_MAPPINGS = {
 DEGREE_INDEX_MAPPINGS = {
     "properties": {
         "degree_id": {"type": "keyword"},
-        "name": {"type": "text"},
+        "degree_name": {"type": "text"},
+        "program_code": {"type": "keyword"},
+        "specialisation_code": {"type": "keyword"},
         "faculty": {"type": "keyword"},
         "school": {"type": "keyword"},
         "total_uoc": {"type": "integer"},
         "duration_years": {"type": "float"},
-        "delivery_mode": {"type": "keyword"},
         "level": {"type": "keyword"},
-        "description": {"type": "text"},
-        "specialisations": {
+        "core_courses": {
             "type": "nested",
             "properties": {
-                "name": {"type": "text"},
-                "required_uoc": {"type": "integer"},
+                "course_code": {"type": "keyword"},
+                "uoc": {"type": "integer"},
+                "title": {"type": "text"},
+                "type": {"type": "keyword"},
                 "courses": {"type": "keyword"},
+                "titles": {"type": "text"},
             },
         },
-        "requirements": {
+        "core_uoc": {"type": "integer"},
+        "thesis": {
             "properties": {
-                "type": {"type": "keyword"},
-                "rules": {
+                "label": {"type": "text"},
+                "uoc": {"type": "integer"},
+                "courses": {
                     "type": "nested",
                     "properties": {
-                        "type": {"type": "keyword"},
-                        "label": {"type": "text"},
+                        "course_code": {"type": "keyword"},
                         "uoc": {"type": "integer"},
-                        "courses": {"type": "keyword"},
-                        "lists": {"type": "keyword"},
-                        "tags": {"type": "keyword"},
+                        "title": {"type": "text"},
                     },
                 },
-            }
+            },
+        },
+        "elective_rules": {
+            "type": "nested",
+            "properties": {
+                "label": {"type": "text"},
+                "min_uoc": {"type": "integer"},
+                "course_patterns": {"type": "keyword"},
+                "note": {"type": "text"},
+            },
+        },
+        "total_elective_uoc": {"type": "integer"},
+        "free_elective_uoc": {"type": "integer"},
+        "gen_ed_uoc": {"type": "integer"},
+        "gen_ed_constraints": {"type": "keyword"},
+        "other_requirements": {
+            "type": "nested",
+            "properties": {
+                "type": {"type": "keyword"},
+                "course_code": {"type": "keyword"},
+                "uoc": {"type": "integer"},
+                "label": {"type": "text"},
+                "note": {"type": "text"},
+            },
         },
     }
 }
 
 
 SAMPLE_DEGREE = {
-    "degree_id": "COMPSC3001",
-    "name": "Bachelor of Computer Science",
+    "degree_id": "3707-SENGAH",
+    "degree_name": "Bachelor of Engineering (Honours) - Software Engineering",
+    "program_code": "3707",
+    "specialisation_code": "SENGAH",
     "faculty": "Engineering",
     "school": "Computer Science and Engineering",
-    "total_uoc": 144,
-    "duration_years": 3,
-    "delivery_mode": "in-person",
+    "total_uoc": 192,
+    "duration_years": 4,
     "level": "undergraduate",
-    "description": (
-        "UNSW Computer Science degree with core, electives, and "
-        "gen ed requirements."
-    ),
-    "specialisations": [
+
+    "core_courses": [
+        {"course_code": "DESN1000", "uoc": 6, "title": "Engineering Design and Innovation"},
+        {"course_code": "COMP1511", "uoc": 6, "title": "Programming Fundamentals"},
+        {"course_code": "COMP1521", "uoc": 6, "title": "Computer Systems Fundamentals"},
+        {"course_code": "COMP1531", "uoc": 6, "title": "Software Engineering Fundamentals"},
+        {"course_code": "MATH1081", "uoc": 6, "title": "Discrete Mathematics"},
         {
-            "name": "Artificial Intelligence",
-            "required_uoc": 36,
-            "courses": ["COMP3411", "COMP4418"],
-        }
+            "type": "OneOf",
+            "uoc": 6,
+            "courses": ["MATH1131", "MATH1141"],
+            "titles": ["Mathematics 1A", "Higher Mathematics 1A"],
+        },
+        {
+            "type": "OneOf",
+            "uoc": 6,
+            "courses": ["MATH1231", "MATH1241"],
+            "titles": ["Mathematics 1B", "Higher Mathematics 1B"],
+        },
+        {"course_code": "COMP2521", "uoc": 6, "title": "Data Structures and Algorithms"},
+        {"course_code": "COMP2041", "uoc": 6, "title": "Software Construction"},
+        {"course_code": "COMP2511", "uoc": 6, "title": "Object-Oriented Design & Programming"},
+        {"course_code": "DESN2000", "uoc": 6, "title": "Engineering Design and Professional Practice"},
+        {"course_code": "MATH2400", "uoc": 3, "title": "Finite Mathematics"},
+        {"course_code": "MATH2859", "uoc": 3, "title": "Probability, Statistics and Information"},
+        {"course_code": "SENG2011", "uoc": 6, "title": "Software Quality, Testing and Engineering"},
+        {"course_code": "SENG2021", "uoc": 6, "title": "Software Construction and Design 1"},
+        {"course_code": "COMP3142", "uoc": 6, "title": "Software Construction and Design 2"},
+        {"course_code": "COMP3311", "uoc": 6, "title": "Database Systems"},
+        {"course_code": "COMP3331", "uoc": 6, "title": "Computer Networks and Applications"},
+        {"course_code": "SENG3011", "uoc": 6, "title": "Software Engineering Workshop"},
+        {"course_code": "SENG4920", "uoc": 6, "title": "Software Engineering Management"},
     ],
-    "requirements": {
-        "type": "AllOf",
-        "rules": [
-            {
-                "type": "MinUOC",
-                "label": "Core Courses",
-                "uoc": 66,
-                "courses": ["COMP1511", "COMP1521", "COMP2521"],
-            },
-            {
-                "type": "MinUOC",
-                "label": "Disciplinary Electives",
-                "uoc": 30,
-                "lists": ["COMP3###", "COMP4###"],
-            },
-            {
-                "type": "MinUOC",
-                "label": "General Education",
-                "uoc": 12,
-                "tags": ["gen_ed"],
-            },
-            {
-                "type": "FreeElectives",
-                "uoc": 18,
-            },
+    "core_uoc": 120,
+
+    "thesis": {
+        "label": "Research Thesis",
+        "uoc": 12,
+        "courses": [
+            {"course_code": "COMP4951", "uoc": 4, "title": "Research Thesis A"},
+            {"course_code": "COMP4952", "uoc": 4, "title": "Research Thesis B"},
+            {"course_code": "COMP4953", "uoc": 4, "title": "Research Thesis C"},
         ],
     },
+
+    "elective_rules": [
+        {
+            "label": "Level 4+ Discipline Electives",
+            "min_uoc": 12,
+            "course_patterns": ["COMP4###", "SENG4###", "COMP6###", "SENG6###"],
+            "note": "Must be level 4 or higher. Any COMP4+ is suitable.",
+        },
+        {
+            "label": "Discipline Electives (any level)",
+            "min_uoc": 24,
+            "course_patterns": ["COMP3###", "COMP4###", "SENG3###", "SENG4###", "COMP6###"],
+            "note": "Any level 3+ COMP or SENG course from the approved electives list.",
+        }
+    ],
+    "total_elective_uoc": 36,
+
+    "free_elective_uoc": 12,
+
+    "gen_ed_uoc": 12,
+    "gen_ed_constraints": [
+        "faculty_not_in:Engineering",
+        "subject_not_in:MATH",
+    ],
+
+    "other_requirements": [
+        {
+            "type": "IndustrialTraining",
+            "course_code": "ENGG4999",
+            "uoc": 0,
+            "label": "Industrial Training",
+            "note": "60 days of approved industry placement. Compulsory, earns no UOC.",
+        }
+    ],
 }
 
 
@@ -350,6 +416,19 @@ def clear_degrees() -> dict:
     }
 
 
+def delete_degree(degree_id: str) -> dict:
+    response = client.delete(
+        index=settings.elastic_degree_index,
+        id=degree_id,
+        refresh="wait_for",
+    )
+    return {
+        "result": response.get("result"),
+        "id": response.get("_id"),
+        "index": response.get("_index"),
+    }
+
+
 def seed_sample_degree() -> dict:
     result = add_degree(dict(SAMPLE_DEGREE))
     return {
@@ -436,6 +515,7 @@ __all__ = [
     "clear_courses",
     "clear_degrees",
     "client",
+    "delete_degree",
     "delete_course",
     "ensure_degree_index_exists",
     "generate_degree_plan",

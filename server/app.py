@@ -8,6 +8,7 @@ from elastic_service import (
     clear_courses,
     clear_degrees,
     client,
+    delete_degree,
     delete_course,
     ensure_degree_index_exists,
     get_degree,
@@ -216,6 +217,18 @@ def read_degree(degree_id: str) -> tuple[dict, int]:
         return {"error": "Degree not found."}, 404
     except Exception as exc:
         return {"error": f"Failed to fetch degree: {exc}"}, 500
+
+    return result, 200
+
+
+@app.delete("/degrees/<degree_id>")
+def remove_degree(degree_id: str) -> tuple[dict, int]:
+    try:
+        result = delete_degree(degree_id)
+    except NotFoundError:
+        return {"error": "Degree not found."}, 404
+    except Exception as exc:
+        return {"error": f"Failed to delete degree: {exc}"}, 500
 
     return result, 200
 
