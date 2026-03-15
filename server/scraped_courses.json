@@ -1,0 +1,47 @@
+[
+  {
+    "course_code": "COMP1010",
+    "title": "The Art of Computing",
+    "description": "This course aims to provide a grounding in computational thinking for anyone who wants one. It assumes no previous programming background, but does assume that all incoming students have used digital devices, such as tablets and smart phones, for a range of tasks (e.g. social networking, reading, essay writing, etc.). The course will use Python as the programming medium and use real world examples from a variety of domains to motivate understanding.",
+    "department": "Computer Science and / or Software Eng",
+    "instructor": "UNSW Faculty",
+    "credits": 6,
+    "level": "undergraduate",
+    "semester": "Term 1",
+    "tags": [
+      "computer science",
+      "software"
+    ],
+    "prerequisites": [
+      "COMP1511",
+      "DPST1091"
+    ],
+    "fees": {
+      "domestic": "$7620",
+      "international": "$7620",
+      "hecs": "$1193"
+    },
+    "enrolment_rules": "Exclusion: COMP1511/DPST1091"
+  },
+  {
+    "course_code": "COMP1337",
+    "title": "Foundations of Cyber Security",
+    "description": "This course provides students with an introduction to the rapidly growing field of cyber security. It is suitable for anyone who wishes to understand more about this fascinating and rapidly emerging global challenge. The course provides an overview of the main aspects of contemporary cyber security, including cyber crime, cyber criminals, cyber war, scams, exploitation, human errors and mistakes, vulnerabilities, responding to emergencies, sensible risk assessment and risk management.",
+    "department": "Computer Science and / or Software Eng",
+    "instructor": "UNSW Faculty",
+    "credits": 6,
+    "level": "undergraduate",
+    "semester": "Term 1",
+    "tags": [
+      "computer science",
+      "software"
+    ],
+    "prerequisites": [],
+    "fees": {
+      "domestic": "$7620",
+      "international": "$7620",
+      "hecs": "$1193"
+    },
+    "enrolment_rules": "Enrolment in 3777 Bachelor of Cyber Security"
+  }
+]

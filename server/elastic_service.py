@@ -35,6 +35,7 @@ INDEX_MAPPINGS = {
         "semester": {"type": "keyword"},
         "tags": {"type": "keyword"},
         "prerequisites": {"type": "keyword"},
+        "enrolment_rules": {"type": "text"},
         "course_fee": {"type": "float"},
         "semantic_text": {"type": "text"},
         "text_embedding": {
