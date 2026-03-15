@@ -5,37 +5,30 @@ from elastic_service import (
     NotFoundError,
     add_course,
     add_degree,
-    clear_courses,
-    clear_degrees,
     client,
     delete_degree,
-    delete_course,
     ensure_degree_index_exists,
     get_degree,
     get_course,
-    seed_startup_course,
-    seed_sample_degree,
-    generate_degree_plan,
+    clear_degrees,
+)
+from planning_service import (
+    DEFAULT_DEGREE_ID,
+    DEFAULT_ENROLLMENT_YEAR,
+    DEFAULT_START_TERM,
+    FEE_PLAN_OPTIONS,
+    build_plan,
+    list_degree_options,
+    normalize_existing_plan,
+    suggest_manual_course_for_slot,
+    validate_manual_course_add,
 )
 
 
 app = Flask(__name__)
-startup_seed_status = {
-    "attempted": False,
-    "seeded": False,
-}
 
-try:
-    startup_seed_status = {
-        "attempted": True,
-        **seed_startup_course(),
-    }
-except Exception as exc:  # pragma: no cover - startup should not crash API
-    startup_seed_status = {
-        "attempted": True,
-        "seeded": False,
-        "error": str(exc),
-    }
+# In-memory fee plan selection (hecs / domestic / international).
+fee_plan_state: dict = {"fee_type": "hecs"}
 
 degree_index_status = {
     "attempted": False,
@@ -62,7 +55,6 @@ def root() -> tuple[dict, int]:
         "status": "ok",
         "index": settings.elastic_index,
         "degree_index": settings.elastic_degree_index,
-        "startup_seed": startup_seed_status,
         "degree_index_status": degree_index_status,
     }, 200
 
@@ -85,6 +77,23 @@ def health() -> tuple[dict, int]:
         "cluster": info.get("cluster_name"),
         "version": info.get("version", {}).get("number"),
     }, 200 if elastic_ok else 503
+
+
+@app.get("/planning/fee-plan")
+def get_fee_plan() -> tuple[dict, int]:
+    return {"fee_type": fee_plan_state["fee_type"]}, 200
+
+
+@app.post("/planning/fee-plan")
+def set_fee_plan() -> tuple[dict, int]:
+    payload = request.get_json(silent=True) or {}
+    fee_type = str(payload.get("fee_type", "")).strip().lower()
+    if fee_type not in FEE_PLAN_OPTIONS:
+        return {
+            "error": f"'fee_type' must be one of: {sorted(FEE_PLAN_OPTIONS)}"
+        }, 400
+    fee_plan_state["fee_type"] = fee_type
+    return {"fee_type": fee_type, "message": "Fee plan updated."}, 200
 
 
 @app.post("/courses")
@@ -116,60 +125,113 @@ def read_course(course_code: str) -> tuple[dict, int]:
     return result, 200
 
 
-@app.delete("/courses/<course_code>")
-def remove_course(course_code: str) -> tuple[dict, int]:
+@app.get("/degrees/options")
+def degree_options() -> tuple[dict, int]:
     try:
-        result = delete_course(course_code)
-    except NotFoundError:
-        return {"error": "Course not found."}, 404
+        options = list_degree_options()
     except Exception as exc:
-        return {"error": f"Failed to delete course: {exc}"}, 500
+        return {"error": f"Failed to list degrees: {exc}"}, 500
 
-    return result, 200
+    return {"degrees": options}, 200
 
 
-@app.delete("/courses")
-def clear_course_database() -> tuple[dict, int]:
+@app.post("/planning/cheapest")
+def planning_cheapest() -> tuple[dict, int]:
     try:
-        result = clear_courses()
-    except Exception as exc:
-        return {"error": f"Failed to clear courses index: {exc}"}, 500
-
-    return result, 200
-
-
-@app.post("/agent/plan")
-def get_degree_plan() -> tuple[dict, int]:
-    payload = request.get_json(silent=True) or {}
-
-    degree = payload.get("degree", "")
-    subjects_per_term = payload.get("subjects_per_term", 3)
-    career_goal = payload.get("career_goal", "")
-    target_companies = payload.get("target_companies", "")
-
-    if not degree or not career_goal:
-        return {"error": "'degree' and 'career_goal' are required."}, 400
-
-    try:
-        if isinstance(subjects_per_term, str):
-            subjects_per_term = int(subjects_per_term)
-        # Fallback to 3 if somehow 0 or invalid
-        if subjects_per_term <= 0:
-            subjects_per_term = 3
-    except ValueError:
-        return {"error": "'subjects_per_term' must be a number."}, 400
-
-    try:
-        result = generate_degree_plan(
-            degree=degree,
-            subjects_per_term=subjects_per_term,
-            career_goal=career_goal,
-            target_companies=target_companies
+        result = build_plan(
+            degree_id=DEFAULT_DEGREE_ID,
+            mode="cheapest",
+            fee_type=fee_plan_state["fee_type"],
         )
     except Exception as exc:
-        return {"error": f"Failed to generate degree plan: {exc}"}, 500
+        return {"error": f"Failed to build cheapest plan: {exc}"}, 500
 
     return result, 200
+
+
+@app.post("/planning/recommended")
+def planning_recommended() -> tuple[dict, int]:
+    payload = request.get_json(silent=True) or {}
+    career_goal = str(payload.get("career_goal", "")).strip()
+
+    if not career_goal:
+        return {"error": "'career_goal' is required."}, 400
+
+    try:
+        result = build_plan(
+            degree_id=DEFAULT_DEGREE_ID,
+            mode="recommended",
+            job_interest_query=career_goal,
+        )
+    except Exception as exc:
+        return {"error": f"Failed to build recommended plan: {exc}"}, 500
+
+    return result, 200
+
+
+@app.post("/planning/context")
+def planning_context() -> tuple[dict, int]:
+    return {
+        "degree_id": DEFAULT_DEGREE_ID,
+        "enrollment_year": DEFAULT_ENROLLMENT_YEAR,
+        "start_term": DEFAULT_START_TERM,
+        "fee_type": fee_plan_state["fee_type"],
+        "completed_courses": [],
+        "terms_per_year": 3,
+        "message": "Planning context accepted (fresh start assumptions).",
+    }, 200
+
+
+@app.post("/planning/manual-add")
+def planning_manual_add() -> tuple[dict, int]:
+    payload = request.get_json(silent=True) or {}
+
+    existing_plan_terms = normalize_existing_plan(
+        payload.get("existing_plan_terms", [])
+    )
+    target_year = payload.get("target_year")
+    target_term = str(payload.get("target_term", "")).strip()
+    course_code = str(payload.get("course_code", "")).strip()
+    course_query = str(payload.get("course_query", "")).strip()
+
+    if not all([target_year, target_term]):
+        return {
+            "error": "'target_year' and 'target_term' are required."
+        }, 400
+
+    if not course_code and not course_query:
+        return {
+            "error": "Provide either 'course_code' or 'course_query'."
+        }, 400
+
+    try:
+        target_year_value = int(str(target_year))
+        if course_code:
+            result = validate_manual_course_add(
+                degree_id=DEFAULT_DEGREE_ID,
+                existing_plan_terms=existing_plan_terms,
+                target_year=target_year_value,
+                target_term=target_term,
+                course_code=course_code,
+                enrollment_year=DEFAULT_ENROLLMENT_YEAR,
+                completed_courses=[],
+            )
+        else:
+            result = suggest_manual_course_for_slot(
+                degree_id=DEFAULT_DEGREE_ID,
+                existing_plan_terms=existing_plan_terms,
+                target_year=target_year_value,
+                target_term=target_term,
+                course_query=course_query,
+                enrollment_year=DEFAULT_ENROLLMENT_YEAR,
+                completed_courses=[],
+            )
+    except ValueError:
+        return {"error": "'target_year' must be a number."}, 400
+    except Exception as exc:
+        return {"error": f"Failed manual course validation: {exc}"}, 500
+
+    return result, 200 if result.get("valid") else 400
 
 
 @app.post("/degrees/setup")
@@ -180,16 +242,6 @@ def setup_degree_index() -> tuple[dict, int]:
         return {"error": f"Failed to setup degree index: {exc}"}, 500
 
     return result, 200
-
-
-@app.post("/degrees/seed")
-def seed_degree_example() -> tuple[dict, int]:
-    try:
-        result = seed_sample_degree()
-    except Exception as exc:
-        return {"error": f"Failed to seed degree example: {exc}"}, 500
-
-    return result, 201
 
 
 @app.post("/degrees")

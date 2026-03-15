@@ -1,0 +1,781 @@
+{
+  "completed_courses": [
+    "COMP1511",
+    "COMP1521"
+  ],
+  "degree_id": "3707-SENGAH",
+  "enrollment_year": 2024,
+  "mode": "recommended",
+  "terms": [
+    {
+      "courses": [
+        {
+          "course_code": "COMP1531",
+          "credits": 6,
+          "department": "Computer Science and / or Software Eng",
+          "description": "This course teaches students about software engineering principles via exposure to the important practice of building correct products in effectively functioning teams.",
+          "enrolment_rules": "COMP1511 or DPST1091 or COMP1917 or COMP1921",
+          "fees": {
+            "domestic": "$7620",
+            "hecs": "$1193",
+            "international": "$7620"
+          },
+          "instructor": "UNSW Faculty",
+          "level": "undergraduate",
+          "prerequisites": [
+            "COMP1511",
+            "COMP1917",
+            "COMP1921",
+            "DPST1091"
+          ],
+          "semantic_text": "Software Engineering Fundamentals This course teaches students about software engineering principles via exposure to the important practice of building correct products in effectively functioning teams. computer science software",
+          "semester": "Term 1, Term 2, Term 3",
+          "tags": [
+            "computer science",
+            "software"
+          ],
+          "text_embedding": {
+            "model_id": "my-elser-model"
+          },
+          "title": "Software Engineering Fundamentals"
+        },
+        {
+          "course_code": "COMP2041",
+          "credits": 6,
+          "department": "Computer Science and / or Software Eng",
+          "description": "This course is designed for students who have mastered the basics of programming. It aims to broaden your knowledge of techniques and tools for software construction. It covers: Unix filters, shell scripting and Python (for programming), git (for version control), docker (for portable deployment), package managers (for configuration and deployment). At the end of this course, you should be able to build moderate-sized software systems and configure them so that others can download and deploy your work.",
+          "enrolment_rules": "COMP1511 OR DPST1091 OR COMP1917 OR COMP1921",
+          "fees": {
+            "domestic": "$7620",
+            "hecs": "$1193",
+            "international": "$7620"
+          },
+          "instructor": "UNSW Faculty",
+          "level": "undergraduate",
+          "prerequisites": [
+            "DPST1091",
+            "COMP1921",
+            "COMP1511",
+            "COMP1917"
+          ],
+          "semantic_text": "Software Construction: Techniques and Tools This course is designed for students who have mastered the basics of programming. It aims to broaden your knowledge of techniques and tools for software construction. It covers: Unix filters, shell scripting and Python (for programming), git (for version control), docker (for portable deployment), package managers (for configuration and deployment). At the end of this course, you should be able to build moderate-sized software systems and configure them so that others can download and deploy your work. computer science software design systems",
+          "semester": "Term 1, Term 2",
+          "tags": [
+            "computer science",
+            "software",
+            "design",
+            "systems"
+          ],
+          "text_embedding": {
+            "model_id": "my-elser-model"
+          },
+          "title": "Software Construction: Techniques and Tools"
+        },
+        {
+          "course_code": "COMP2521",
+          "credits": 6,
+          "department": "Computer Science and / or Software Eng",
+          "description": "The aim of this course is to get you to think like a computer scientist . This certainly sounds like a noble goal... but what does it really mean? How does a scientist , let alone a computer scientist, actually think?",
+          "enrolment_rules": "COMP1511 or DPST1091 or COMP1917 or COMP1921",
+          "fees": {
+            "domestic": "$7620",
+            "hecs": "$1193",
+            "international": "$7620"
+          },
+          "instructor": "UNSW Faculty",
+          "level": "undergraduate",
+          "prerequisites": [
+            "DPST1091",
+            "COMP1921",
+            "COMP1511",
+            "COMP1917"
+          ],
+          "semantic_text": "Data Structures and Algorithms The aim of this course is to get you to think like a computer scientist . This certainly sounds like a noble goal... but what does it really mean? How does a scientist , let alone a computer scientist, actually think? computer science software data algorithms",
+          "semester": "Summer Term, Term 1, Term 2, Term 3",
+          "tags": [
+            "computer science",
+            "software",
+            "data",
+            "algorithms"
+          ],
+          "text_embedding": {
+            "model_id": "my-elser-model"
+          },
+          "title": "Data Structures and Algorithms"
+        }
+      ],
+      "term": "term 1",
+      "uoc": 18,
+      "year": 2026
+    },
+    {
+      "courses": [
+        {
+          "course_code": "COMP3142",
+          "credits": 6,
+          "department": "Computer Science and / or Software Eng",
+          "description": "Software plays an important role in our daily life. It is important to construct robust, operational software, especially under limited development budget and time constraints. To address this problem, a thorough verification and validation process is needed.",
+          "enrolment_rules": "COMP1531, COMP2511 and COMP2521",
+          "fees": {
+            "domestic": "$7620",
+            "hecs": "$1193",
+            "international": "$7620"
+          },
+          "instructor": "UNSW Faculty",
+          "level": "undergraduate",
+          "prerequisites": [
+            "COMP1531",
+            "COMP2511",
+            "COMP2521"
+          ],
+          "semantic_text": "Software Testing and Quality Assurance Software plays an important role in our daily life. It is important to construct robust, operational software, especially under limited development budget and time constraints. To address this problem, a thorough verification and validation process is needed. computer science software",
+          "semester": "Term 2",
+          "tags": [
+            "computer science",
+            "software"
+          ],
+          "text_embedding": {
+            "model_id": "my-elser-model"
+          },
+          "title": "Software Testing and Quality Assurance"
+        },
+        {
+          "course_code": "COMP3311",
+          "credits": 6,
+          "department": "Computer Science and / or Software Eng",
+          "description": "This course aims to explore in depth the practice of developing database applications and the theory behind relational database systems. It will also give a very brief overview of the technologies used in implementing database management systems and the past, present and future of database systems.",
+          "enrolment_rules": "COMP2521 or COMP1927",
+          "fees": {
+            "domestic": "$7620",
+            "hecs": "$1193",
+            "international": "$7620"
+          },
+          "instructor": "UNSW Faculty",
+          "level": "undergraduate",
+          "prerequisites": [
+            "COMP2521",
+            "COMP1927"
+          ],
+          "semantic_text": "Database Systems This course aims to explore in depth the practice of developing database applications and the theory behind relational database systems. It will also give a very brief overview of the technologies used in implementing database management systems and the past, present and future of database systems. computer science software data systems",
+          "semester": "Term 1, Term 2",
+          "tags": [
+            "computer science",
+            "software",
+            "data",
+            "systems"
+          ],
+          "text_embedding": {
+            "model_id": "my-elser-model"
+          },
+          "title": "Database Systems"
+        },
+        {
+          "course_code": "COMP3331",
+          "credits": 6,
+          "department": "Computer Science and / or Software Eng",
+          "description": "This course is an introductory course on computer networks aimed at students with a computer science / electrical engineering background. You will focus on common paradigms and protocols used in present data communication. Through lectures, in-class activities, labs and assignments, you will learn the theory and application of:",
+          "enrolment_rules": "COMP1927 or COMP2521 or MTRN2500",
+          "fees": {
+            "domestic": "$7620",
+            "hecs": "$1193",
+            "international": "$7620"
+          },
+          "instructor": "UNSW Faculty",
+          "level": "undergraduate",
+          "prerequisites": [
+            "COMP2521",
+            "MTRN2500",
+            "COMP1927"
+          ],
+          "semantic_text": "Computer Networks and Applications This course is an introductory course on computer networks aimed at students with a computer science / electrical engineering background. You will focus on common paradigms and protocols used in present data communication. Through lectures, in-class activities, labs and assignments, you will learn the theory and application of: computer science software data",
+          "semester": "Term 1, Term 2, Term 3",
+          "tags": [
+            "computer science",
+            "software",
+            "data"
+          ],
+          "text_embedding": {
+            "model_id": "my-elser-model"
+          },
+          "title": "Computer Networks and Applications"
+        }
+      ],
+      "term": "term 2",
+      "uoc": 18,
+      "year": 2026
+    },
+    {
+      "courses": [
+        {
+          "course_code": "DESN1000",
+          "credits": 6,
+          "department": "Computer Science and / or Software Eng",
+          "description": "In this course, you will experience first-hand one of the major things that engineers do: designing and building creative solutions to problems. You will learn to think the way that engineers think, coming up with reasonable solutions to problems despite being limited by budget, time and resources, the requirement to also meet environmental and social objectives and, of course, the limitations of the laws of physics. This will help you appreciate engineering design's central ideas as an on-time, on-budget and fit-for-purpose solution to a poorly specified, open-ended problem.\n\nYou will start to build critical skills for engineers that will be called upon repeatedly in your academic and professional lives, including concept development, critical thinking and evaluation skills, clear communication, research and information literacy skills and the skills involved in successfully functioning within a team environment to complete a given task.\n\nA key part of the course is a design project. During the first week, you will select a project to complete from a list of possible options offered. Once you have joined a project, you will be assigned to a team of around 5-6 students during the second week. With this team, you will work to practically solve your design problem for the rest of the term.",
+          "enrolment_rules": "",
+          "fees": {
+            "domestic": "$7620",
+            "hecs": "$1193",
+            "international": "$7620"
+          },
+          "instructor": "UNSW Faculty",
+          "level": "undergraduate",
+          "prerequisites": [],
+          "semantic_text": "Introduction to Engineering Design and Innovation In this course, you will experience first-hand one of the major things that engineers do: designing and building creative solutions to problems. You will learn to think the way that engineers think, coming up with reasonable solutions to problems despite being limited by budget, time and resources, the requirement to also meet environmental and social objectives and, of course, the limitations of the laws of physics. This will help you appreciate engineering design's central ideas as an on-time, on-budget and fit-for-purpose solution to a poorly specified, open-ended problem.\n\nYou will start to build critical skills for engineers that will be called upon repeatedly in your academic and professional lives, including concept development, critical thinking and evaluation skills, clear communication, research and information literacy skills and the skills involved in successfully functioning within a team environment to complete a given task.\n\nA key part of the course is a design project. During the first week, you will select a project to complete from a list of possible options offered. Once you have joined a project, you will be assigned to a team of around 5-6 students during the second week. With this team, you will work to practically solve your design problem for the rest of the term. computer science software design",
+          "semester": "Term 1, Term 3",
+          "tags": [
+            "computer science",
+            "software",
+            "design"
+          ],
+          "text_embedding": {
+            "model_id": "my-elser-model"
+          },
+          "title": "Introduction to Engineering Design and Innovation"
+        },
+        {
+          "course_code": "DESN2000",
+          "credits": 6,
+          "department": "Computer Science and / or Software Eng",
+          "description": "Design is one of the critical foundations of engineering and a main component in creating value. A good engineer has complex technical skills, but also creative skills, project management and teamworking skills, and knowledge of professional ethical standards in design.",
+          "enrolment_rules": "Please refer to the course overview section for information on prerequisite requirements.",
+          "fees": {
+            "domestic": "$7620",
+            "hecs": "$1193",
+            "international": "$7620"
+          },
+          "instructor": "UNSW Faculty",
+          "level": "undergraduate",
+          "prerequisites": [],
+          "semantic_text": "Engineering Design and Professional Practice Design is one of the critical foundations of engineering and a main component in creating value. A good engineer has complex technical skills, but also creative skills, project management and teamworking skills, and knowledge of professional ethical standards in design. computer science software design",
+          "semester": "Term 2, Term 3",
+          "tags": [
+            "computer science",
+            "software",
+            "design"
+          ],
+          "text_embedding": {
+            "model_id": "my-elser-model"
+          },
+          "title": "Engineering Design and Professional Practice"
+        },
+        {
+          "course_code": "MATH1081",
+          "credits": 6,
+          "department": "Computer Science and / or Software Eng",
+          "description": "This course will enhance students' research, inquiry, and analytical thinking abilities and provide them with the mathematical language and mathematical techniques to unravel many seemingly unrelated problems. The course content addresses five major pillars of discrete mathematics: set theory, number theory, proofs and logic, combinatorics, and graph theory. The theory covered will provide a good foundation for understanding many problems that arise in all science disciplines, particularly higher mathematics and computer science.",
+          "enrolment_rules": "",
+          "fees": {
+            "domestic": "$7830",
+            "hecs": "$593",
+            "international": "$7830"
+          },
+          "instructor": "UNSW Faculty",
+          "level": "undergraduate",
+          "prerequisites": [],
+          "semantic_text": "Discrete Mathematics This course will enhance students' research, inquiry, and analytical thinking abilities and provide them with the mathematical language and mathematical techniques to unravel many seemingly unrelated problems. The course content addresses five major pillars of discrete mathematics: set theory, number theory, proofs and logic, combinatorics, and graph theory. The theory covered will provide a good foundation for understanding many problems that arise in all science disciplines, particularly higher mathematics and computer science. computer science software",
+          "semester": "Term 1, Term 2, Term 3",
+          "tags": [
+            "computer science",
+            "software"
+          ],
+          "text_embedding": {
+            "model_id": "my-elser-model"
+          },
+          "title": "Discrete Mathematics"
+        }
+      ],
+      "term": "term 3",
+      "uoc": 18,
+      "year": 2026
+    },
+    {
+      "courses": [
+        {
+          "course_code": "COMP4951",
+          "credits": 4,
+          "department": "Computer Science and / or Software Eng",
+          "description": "The thesis provides an opportunity for you to bring together engineering principles learned over the previous years of study, and apply these principles to innovatively solve problems, which may include the development of specific designs and/or the investigation of various research hypotheses. Thesis projects are complex, open-ended problems that allow room for your creativity, and the acquisition, analysis, and interpretation of results. Typically, the project you work with will have multiple possible solutions or conclusions and sufficient complexity to require a degree of project planning. The thesis requires you to formulate problems in engineering terms, manage an engineering project and find solutions by applying engineering methods. You will also develop an ability to work in a research and development environment.",
+          "enrolment_rules": "Enrolled in a CSE BE (Hons) programs, completion of 126 UOC and completion of 3rd year core.",
+          "fees": {
+            "domestic": "$5080",
+            "hecs": "$795",
+            "international": "$5080"
+          },
+          "instructor": "UNSW Faculty",
+          "level": "undergraduate",
+          "prerequisites": [],
+          "semantic_text": "Research Thesis A The thesis provides an opportunity for you to bring together engineering principles learned over the previous years of study, and apply these principles to innovatively solve problems, which may include the development of specific designs and/or the investigation of various research hypotheses. Thesis projects are complex, open-ended problems that allow room for your creativity, and the acquisition, analysis, and interpretation of results. Typically, the project you work with will have multiple possible solutions or conclusions and sufficient complexity to require a degree of project planning. The thesis requires you to formulate problems in engineering terms, manage an engineering project and find solutions by applying engineering methods. You will also develop an ability to work in a research and development environment. computer science software design",
+          "semester": "Term 1, Term 2, Term 3",
+          "tags": [
+            "computer science",
+            "software",
+            "design"
+          ],
+          "text_embedding": {
+            "model_id": "my-elser-model"
+          },
+          "title": "Research Thesis A"
+        },
+        {
+          "course_code": "COMP1337",
+          "credits": 6,
+          "department": "Computer Science and / or Software Eng",
+          "description": "This course provides students with an introduction to the rapidly growing field of cyber security. It is suitable for anyone who wishes to understand more about this fascinating and rapidly emerging global challenge. The course provides an overview of the main aspects of contemporary cyber security, including cyber crime, cyber criminals, cyber war, scams, exploitation, human errors and mistakes, vulnerabilities, responding to emergencies, sensible risk assessment and risk management.",
+          "enrolment_rules": "Enrolment in 3777 Bachelor of Cyber Security",
+          "fees": {
+            "domestic": "$7620",
+            "hecs": "$1193",
+            "international": "$7620"
+          },
+          "instructor": "UNSW Faculty",
+          "level": "undergraduate",
+          "prerequisites": [],
+          "semantic_text": "Foundations of Cyber Security This course provides students with an introduction to the rapidly growing field of cyber security. It is suitable for anyone who wishes to understand more about this fascinating and rapidly emerging global challenge. The course provides an overview of the main aspects of contemporary cyber security, including cyber crime, cyber criminals, cyber war, scams, exploitation, human errors and mistakes, vulnerabilities, responding to emergencies, sensible risk assessment and risk management. computer science software",
+          "semester": "Term 1",
+          "tags": [
+            "computer science",
+            "software"
+          ],
+          "text_embedding": {
+            "model_id": "my-elser-model"
+          },
+          "title": "Foundations of Cyber Security"
+        },
+        {
+          "course_code": "COMP4337",
+          "credits": 6,
+          "department": "Computer Science and / or Software Eng",
+          "description": "With the exponential growth of the Internet, the security of a network has become increasingly challenging. This subject will explore the security vulnerabilities in both fixed and wireless networks and cover the fundamental concepts and advanced issues with an emphasis on Internet architecture and protocols.\n\nThe following key concepts will be covered: Network Security, Wireless Communications and Security overview, Review of Cryptographic techniques, 802.11 Technologies and legacy 802.11 Security: lessons learnt, Encryption Ciphers and Methods in Wireless Networks, Wireless Security Risks, Wireless Security Auditing and Pen Test Introduction,  IPSec and IP layer security,  PKI/X.509, Transport Layer Security/DTLS,   Intrusion Detection and Protection Systems, Network Firewalls, Secure Neighbor Discovery, Routing and Forwarding Security,  Authentication and Key Management in Wireless Networks/Sensor Networks,   Broadcast Security and Secure Code Dissemination,  Network Privacy and Anonymity, Security and Privacy in Location Services, Smart Grid, and Anomaly Detection for Network Security.",
+          "enrolment_rules": "COMP3331.",
+          "fees": {
+            "domestic": "$7620",
+            "hecs": "$1193",
+            "international": "$7620"
+          },
+          "instructor": "UNSW Faculty",
+          "level": "undergraduate",
+          "prerequisites": [
+            "COMP3331"
+          ],
+          "semantic_text": "Securing Fixed and Wireless Networks With the exponential growth of the Internet, the security of a network has become increasingly challenging. This subject will explore the security vulnerabilities in both fixed and wireless networks and cover the fundamental concepts and advanced issues with an emphasis on Internet architecture and protocols.\n\nThe following key concepts will be covered: Network Security, Wireless Communications and Security overview, Review of Cryptographic techniques, 802.11 Technologies and legacy 802.11 Security: lessons learnt, Encryption Ciphers and Methods in Wireless Networks, Wireless Security Risks, Wireless Security Auditing and Pen Test Introduction,  IPSec and IP layer security,  PKI/X.509, Transport Layer Security/DTLS,   Intrusion Detection and Protection Systems, Network Firewalls, Secure Neighbor Discovery, Routing and Forwarding Security,  Authentication and Key Management in Wireless Networks/Sensor Networks,   Broadcast Security and Secure Code Dissemination,  Network Privacy and Anonymity, Security and Privacy in Location Services, Smart Grid, and Anomaly Detection for Network Security. computer science software systems",
+          "semester": "Term 1",
+          "tags": [
+            "computer science",
+            "software",
+            "systems"
+          ],
+          "text_embedding": {
+            "model_id": "my-elser-model"
+          },
+          "title": "Securing Fixed and Wireless Networks"
+        }
+      ],
+      "term": "term 1",
+      "uoc": 18,
+      "year": 2027
+    },
+    {
+      "courses": [
+        {
+          "course_code": "COMP4952",
+          "credits": 4,
+          "department": "Computer Science and / or Software Eng",
+          "description": "The thesis provides an opportunity for you to bring together engineering principles learned over the previous years of study, and apply these principles to innovatively solve problems, which may include the development of specific designs and/or the investigation of various research hypotheses. Thesis projects are complex, open-ended problems that allow room for your creativity, and the acquisition, analysis, and interpretation of results. Typically, the project you work with will have multiple possible solutions or conclusions and sufficient complexity to require a degree of project planning. The thesis requires you to formulate problems in engineering terms, manage an engineering project and find solutions by applying engineering methods. You will also develop an ability to work in a research and development environment.",
+          "enrolment_rules": "COMP4951",
+          "fees": {
+            "domestic": "$5080",
+            "hecs": "$795",
+            "international": "$5080"
+          },
+          "instructor": "UNSW Faculty",
+          "level": "undergraduate",
+          "prerequisites": [
+            "COMP4951"
+          ],
+          "semantic_text": "Research Thesis B The thesis provides an opportunity for you to bring together engineering principles learned over the previous years of study, and apply these principles to innovatively solve problems, which may include the development of specific designs and/or the investigation of various research hypotheses. Thesis projects are complex, open-ended problems that allow room for your creativity, and the acquisition, analysis, and interpretation of results. Typically, the project you work with will have multiple possible solutions or conclusions and sufficient complexity to require a degree of project planning. The thesis requires you to formulate problems in engineering terms, manage an engineering project and find solutions by applying engineering methods. You will also develop an ability to work in a research and development environment. computer science software design",
+          "semester": "Term 1, Term 2, Term 3",
+          "tags": [
+            "computer science",
+            "software",
+            "design"
+          ],
+          "text_embedding": {
+            "model_id": "my-elser-model"
+          },
+          "title": "Research Thesis B"
+        },
+        {
+          "course_code": "COMP6441",
+          "credits": 6,
+          "department": "Computer Science and / or Software Eng",
+          "description": "In this introductory cybersecurity course we look at Security Engineering \u2013 the engineering principles behind designing, monitoring, and maintaining security in the face of an adversary.  We explore selected case studies and examine the practical principles behind effective security. We introduce the fundamental ideas of security and then we look at how these are applied in current cyber security practice. We will pay particular attention to systems which fail and the importance of thinking like an attacker. This course involves analysis, critical thinking and design. A cunning and devious mind will be an asset. Although our main concern is cybersecurity, the engineering principles we cover apply to security more generally.",
+          "enrolment_rules": "Completion of 30 UOC",
+          "fees": {
+            "domestic": "$7620",
+            "hecs": "$1193",
+            "international": "$7620"
+          },
+          "instructor": "UNSW Faculty",
+          "level": "undergraduate",
+          "prerequisites": [],
+          "semantic_text": "Security Engineering and Cyber Security In this introductory cybersecurity course we look at Security Engineering \u2013 the engineering principles behind designing, monitoring, and maintaining security in the face of an adversary.  We explore selected case studies and examine the practical principles behind effective security. We introduce the fundamental ideas of security and then we look at how these are applied in current cyber security practice. We will pay particular attention to systems which fail and the importance of thinking like an attacker. This course involves analysis, critical thinking and design. A cunning and devious mind will be an asset. Although our main concern is cybersecurity, the engineering principles we cover apply to security more generally. computer science software design systems",
+          "semester": "Term 2",
+          "tags": [
+            "computer science",
+            "software",
+            "design",
+            "systems"
+          ],
+          "text_embedding": {
+            "model_id": "my-elser-model"
+          },
+          "title": "Security Engineering and Cyber Security"
+        },
+        {
+          "course_code": "COMP6841",
+          "credits": 6,
+          "department": "Computer Science and / or Software Eng",
+          "description": "In this introductory cybersecurity course we look at Security Engineering \u2013 the engineering principles behind designing, monitoring, and maintaining security in the face of an adversary.  We explore selected case studies and examine the practical principles behind effective security. We introduce the fundamental ideas of security and then we look at how these are applied in current cyber security practice. We will pay particular attention to systems which fail and the importance of thinking like an attacker. This course involves analysis, critical thinking and design. A cunning and devious mind will be an asset. Although our main concern is cybersecurity, the engineering principles we cover apply to security more generally.",
+          "enrolment_rules": "Completion of 30 UOC, and COMP1927 or COMP2521",
+          "fees": {
+            "domestic": "$7620",
+            "hecs": "$1193",
+            "international": "$7620"
+          },
+          "instructor": "UNSW Faculty",
+          "level": "undergraduate",
+          "prerequisites": [
+            "COMP2521",
+            "COMP1927"
+          ],
+          "semantic_text": "Extended Security Engineering and Cyber Security In this introductory cybersecurity course we look at Security Engineering \u2013 the engineering principles behind designing, monitoring, and maintaining security in the face of an adversary.  We explore selected case studies and examine the practical principles behind effective security. We introduce the fundamental ideas of security and then we look at how these are applied in current cyber security practice. We will pay particular attention to systems which fail and the importance of thinking like an attacker. This course involves analysis, critical thinking and design. A cunning and devious mind will be an asset. Although our main concern is cybersecurity, the engineering principles we cover apply to security more generally. computer science software design systems",
+          "semester": "Term 2",
+          "tags": [
+            "computer science",
+            "software",
+            "design",
+            "systems"
+          ],
+          "text_embedding": {
+            "model_id": "my-elser-model"
+          },
+          "title": "Extended Security Engineering and Cyber Security"
+        }
+      ],
+      "term": "term 2",
+      "uoc": 18,
+      "year": 2027
+    },
+    {
+      "courses": [
+        {
+          "course_code": "COMP4953",
+          "credits": 4,
+          "department": "Computer Science and / or Software Eng",
+          "description": "The thesis provides an opportunity for you to bring together engineering principles learned over the previous years of study, and apply these principles to innovatively solve problems, which may the development of  specific designs and/or the investigation of various research hypotheses. Thesis projects are complex, open-ended problems that allow room for your creativity, and the acquisition, analysis, and interpretation of results. Typically, the project you work with will have multiple possible solutions or conclusions and sufficient complexity to require a degree of project planning. The thesis requires you to formulate problems in engineering terms, manage an engineering project and find solutions by applying engineering methods. You will also develop an ability to work in a research and development environment.",
+          "enrolment_rules": "COMP4952",
+          "fees": {
+            "domestic": "$5080",
+            "hecs": "$795",
+            "international": "$5080"
+          },
+          "instructor": "UNSW Faculty",
+          "level": "undergraduate",
+          "prerequisites": [
+            "COMP4952"
+          ],
+          "semantic_text": "Research Thesis C The thesis provides an opportunity for you to bring together engineering principles learned over the previous years of study, and apply these principles to innovatively solve problems, which may the development of  specific designs and/or the investigation of various research hypotheses. Thesis projects are complex, open-ended problems that allow room for your creativity, and the acquisition, analysis, and interpretation of results. Typically, the project you work with will have multiple possible solutions or conclusions and sufficient complexity to require a degree of project planning. The thesis requires you to formulate problems in engineering terms, manage an engineering project and find solutions by applying engineering methods. You will also develop an ability to work in a research and development environment. computer science software design",
+          "semester": "Term 1, Term 2, Term 3",
+          "tags": [
+            "computer science",
+            "software",
+            "design"
+          ],
+          "text_embedding": {
+            "model_id": "my-elser-model"
+          },
+          "title": "Research Thesis C"
+        },
+        {
+          "course_code": "COMP6447",
+          "credits": 6,
+          "department": "Computer Science and / or Software Eng",
+          "description": "This course looks at cyber attack and defence. Students learn how to assess and identify vulnerabilities and how vulnerabilities are exploited. Students learn the principles and theory of exploitation, the common security models, and how approaches to exploitation and defence have evolved over time.",
+          "enrolment_rules": "A mark of at least 65 in COMP6841, or a mark of at least 75 in COMP6441, or COMP3441, or COMP1337",
+          "fees": {
+            "domestic": "$7620",
+            "hecs": "$1193",
+            "international": "$7620"
+          },
+          "instructor": "UNSW Faculty",
+          "level": "undergraduate",
+          "prerequisites": [
+            "COMP6841",
+            "COMP3441",
+            "COMP6441",
+            "COMP1337"
+          ],
+          "semantic_text": "System and Software Security Assessment This course looks at cyber attack and defence. Students learn how to assess and identify vulnerabilities and how vulnerabilities are exploited. Students learn the principles and theory of exploitation, the common security models, and how approaches to exploitation and defence have evolved over time. computer science software systems",
+          "semester": "Term 3",
+          "tags": [
+            "computer science",
+            "software",
+            "systems"
+          ],
+          "text_embedding": {
+            "model_id": "my-elser-model"
+          },
+          "title": "System and Software Security Assessment"
+        },
+        {
+          "course_code": "COMP1939",
+          "credits": 6,
+          "department": "Computer Science and / or Software Eng",
+          "description": "This workshop course provides students with a series of practical challenges and applied exercises to apply and integrate the cyber security and computing knowledge and skills they have mastered in their first year of cyber security study.",
+          "enrolment_rules": "Prerequisite or Co-requisite: COMP1521\n\nPrerequisite: COMP1337 and enrolment in 3777 Bachelor of Cyber Security",
+          "fees": {
+            "domestic": "$7620",
+            "hecs": "$1193",
+            "international": "$7620"
+          },
+          "instructor": "UNSW Faculty",
+          "level": "undergraduate",
+          "prerequisites": [
+            "COMP1521",
+            "COMP1337"
+          ],
+          "semantic_text": "Cyber Security Workshop 1 - Penetration Testing This workshop course provides students with a series of practical challenges and applied exercises to apply and integrate the cyber security and computing knowledge and skills they have mastered in their first year of cyber security study. computer science software",
+          "semester": "Term 3",
+          "tags": [
+            "computer science",
+            "software"
+          ],
+          "text_embedding": {
+            "model_id": "my-elser-model"
+          },
+          "title": "Cyber Security Workshop 1 - Penetration Testing"
+        }
+      ],
+      "term": "term 3",
+      "uoc": 18,
+      "year": 2027
+    },
+    {
+      "courses": [
+        {
+          "course_code": "COMP6443",
+          "credits": 6,
+          "department": "Computer Science and / or Software Eng",
+          "description": "Web applications are currently the predominant source of software vulnerabilities exploited in in online attacks. There is a growing need and growing demand for web programmers to be security aware.",
+          "enrolment_rules": "COMP6441 or COMP6841 or COMP3441",
+          "fees": {
+            "domestic": "$7620",
+            "hecs": "$1193",
+            "international": "$7620"
+          },
+          "instructor": "UNSW Faculty",
+          "level": "undergraduate",
+          "prerequisites": [
+            "COMP6841",
+            "COMP3441",
+            "COMP6441"
+          ],
+          "semantic_text": "Web Application Security and Testing Web applications are currently the predominant source of software vulnerabilities exploited in in online attacks. There is a growing need and growing demand for web programmers to be security aware. computer science software",
+          "semester": "Term 1",
+          "tags": [
+            "computer science",
+            "software"
+          ],
+          "text_embedding": {
+            "model_id": "my-elser-model"
+          },
+          "title": "Web Application Security and Testing"
+        },
+        {
+          "course_code": "COMP3446",
+          "credits": 6,
+          "department": "Computer Science and / or Software Eng",
+          "description": "This course covers how to securely design and operate cloud infrastructure and how to monitor for compromise and response patterns for security incidents. This is a rapidly changing field and is one of the main areas of attack on enterprise systems.",
+          "enrolment_rules": "COMP1337",
+          "fees": {
+            "domestic": "$7620",
+            "hecs": "$1193",
+            "international": "$7620"
+          },
+          "instructor": "UNSW Faculty",
+          "level": "undergraduate",
+          "prerequisites": [
+            "COMP1337"
+          ],
+          "semantic_text": "Cloud Security This course covers how to securely design and operate cloud infrastructure and how to monitor for compromise and response patterns for security incidents. This is a rapidly changing field and is one of the main areas of attack on enterprise systems. computer science software design systems",
+          "semester": "Term 1",
+          "tags": [
+            "computer science",
+            "software",
+            "design",
+            "systems"
+          ],
+          "text_embedding": {
+            "model_id": "my-elser-model"
+          },
+          "title": "Cloud Security"
+        }
+      ],
+      "term": "term 1",
+      "uoc": 12,
+      "year": 2028
+    },
+    {
+      "courses": [
+        {
+          "course_code": "MATH2400",
+          "credits": 3,
+          "department": "Computer Science and / or Software Eng",
+          "description": "This is an introduction to those areas of Mathematics which (amongst other things) underpin important areas of computing. The main topics are integer and modular arithmetic (including tests for primality of integers), polynomial algebra (including factorisation of polynomials and construction of new fields), and an introduction to cryptography and error-correcting codes.\n\nThe course is delivered through a series of lectures and tutorials, along with weekly self-paced online lessons. All topics are taught from first principles, but due to the relatively fast pace of delivery, MATH1081 \u2013 Discrete Mathematics is recommended prior knowledge. The course provides a strong foundation for students intending to study higher-level mathematics or computer science, and is a core course for the Bachelor of Engineering (Honours) (Software) degree.",
+          "enrolment_rules": "MATH1081 or MATH1231 or DPST1014 or MATH1241 or MATH1251",
+          "fees": {
+            "domestic": "$3915",
+            "hecs": "$297",
+            "international": "$3915"
+          },
+          "instructor": "UNSW Faculty",
+          "level": "undergraduate",
+          "prerequisites": [
+            "MATH1231",
+            "MATH1081",
+            "DPST1014",
+            "MATH1251",
+            "MATH1241"
+          ],
+          "semantic_text": "Finite Mathematics This is an introduction to those areas of Mathematics which (amongst other things) underpin important areas of computing. The main topics are integer and modular arithmetic (including tests for primality of integers), polynomial algebra (including factorisation of polynomials and construction of new fields), and an introduction to cryptography and error-correcting codes.\n\nThe course is delivered through a series of lectures and tutorials, along with weekly self-paced online lessons. All topics are taught from first principles, but due to the relatively fast pace of delivery, MATH1081 \u2013 Discrete Mathematics is recommended prior knowledge. The course provides a strong foundation for students intending to study higher-level mathematics or computer science, and is a core course for the Bachelor of Engineering (Honours) (Software) degree. computer science software",
+          "semester": "Term 2",
+          "tags": [
+            "computer science",
+            "software"
+          ],
+          "text_embedding": {
+            "model_id": "my-elser-model"
+          },
+          "title": "Finite Mathematics"
+        },
+        {
+          "course_code": "COMP2218",
+          "credits": 6,
+          "department": "Computer Science and / or Software Eng",
+          "description": "This course explores the intersection of cyber security and human behaviour, emphasising the importance of designing practical systems that are not only secure and robust technically but also in operation in an environment involving humans. It delves deeper than traditional cyber security, exploring the crucial role human behaviour plays in strengthening and weakening the security of systems.",
+          "enrolment_rules": "COMP1337",
+          "fees": {
+            "domestic": "$7620",
+            "hecs": "$1193",
+            "international": "$7620"
+          },
+          "instructor": "UNSW Faculty",
+          "level": "undergraduate",
+          "prerequisites": [
+            "COMP1337"
+          ],
+          "semantic_text": "Human Centric Security This course explores the intersection of cyber security and human behaviour, emphasising the importance of designing practical systems that are not only secure and robust technically but also in operation in an environment involving humans. It delves deeper than traditional cyber security, exploring the crucial role human behaviour plays in strengthening and weakening the security of systems. computer science software design systems",
+          "semester": "Term 2",
+          "tags": [
+            "computer science",
+            "software",
+            "design",
+            "systems"
+          ],
+          "text_embedding": {
+            "model_id": "my-elser-model"
+          },
+          "title": "Human Centric Security"
+        }
+      ],
+      "term": "term 2",
+      "uoc": 12,
+      "year": 2028
+    },
+    {
+      "courses": [
+        {
+          "course_code": "SENG2011",
+          "credits": 6,
+          "department": "Computer Science and / or Software Eng",
+          "description": "Reasoning involves taking what facts you know (or assume) to be true, and calculating what the consequences will be. Reasoning is what everyone does every day in real life: for example, *!#!* the traffic is bad this morning! I'm going to be late for work. My work says if employees arrive late, they must work overtime. I'll be working overtime tonight. This course applies reasoning to computer programming. It involves analysing the behaviour of the program using mathematical logic and creating a specification. This specification allows you to prove exactly what the program does. It means it is impossible for the program to contain any kind of programming error. This has important consequences for software development. It means, for example, a great deal less testing is required because you, the programmer, will be able to proudly promise that the program that you have produced is \"perfect\".",
+          "enrolment_rules": "MATH1081",
+          "fees": {
+            "domestic": "$7620",
+            "hecs": "$1193",
+            "international": "$7620"
+          },
+          "instructor": "UNSW Faculty",
+          "level": "undergraduate",
+          "prerequisites": [
+            "MATH1081"
+          ],
+          "semantic_text": "Workshop on Reasoning about Programs Reasoning involves taking what facts you know (or assume) to be true, and calculating what the consequences will be. Reasoning is what everyone does every day in real life: for example, *!#!* the traffic is bad this morning! I'm going to be late for work. My work says if employees arrive late, they must work overtime. I'll be working overtime tonight. This course applies reasoning to computer programming. It involves analysing the behaviour of the program using mathematical logic and creating a specification. This specification allows you to prove exactly what the program does. It means it is impossible for the program to contain any kind of programming error. This has important consequences for software development. It means, for example, a great deal less testing is required because you, the programmer, will be able to proudly promise that the program that you have produced is \"perfect\". computer science software",
+          "semester": "Term 3",
+          "tags": [
+            "computer science",
+            "software"
+          ],
+          "text_embedding": {
+            "model_id": "my-elser-model"
+          },
+          "title": "Workshop on Reasoning about Programs"
+        },
+        {
+          "course_code": "COMP2949",
+          "credits": 6,
+          "department": "Computer Science and / or Software Eng",
+          "description": "This workshop course provides students with a series of practical challenges and applied exercises to apply and integrate knowledge and skills they have mastered in the second year of their cyber security degree.",
+          "enrolment_rules": "Prerequisite or Co-requisite: COMP1521\n\nPrerequisite: COMP1939 and enrolment in 3777 Bachelor of Cyber Security",
+          "fees": {
+            "domestic": "$7620",
+            "hecs": "$1193",
+            "international": "$7620"
+          },
+          "instructor": "UNSW Faculty",
+          "level": "undergraduate",
+          "prerequisites": [
+            "COMP1939",
+            "COMP1521"
+          ],
+          "semantic_text": "Cyber Security Workshop 2 - Defence This workshop course provides students with a series of practical challenges and applied exercises to apply and integrate knowledge and skills they have mastered in the second year of their cyber security degree. computer science software",
+          "semester": "Term 3",
+          "tags": [
+            "computer science",
+            "software"
+          ],
+          "text_embedding": {
+            "model_id": "my-elser-model"
+          },
+          "title": "Cyber Security Workshop 2 - Defence"
+        }
+      ],
+      "term": "term 3",
+      "uoc": 12,
+      "year": 2028
+    }
+  ],
+  "thesis_locked_terms": [
+    {
+      "term": "term 1",
+      "year": 2027
+    },
+    {
+      "term": "term 2",
+      "year": 2027
+    },
+    {
+      "term": "term 3",
+      "year": 2027
+    }
+  ],
+  "unmet_requirements": {
+    "core_courses_unscheduled": [
+      "COMP2511",
+      "MATH2859",
+      "SENG2021",
+      "SENG3011",
+      "SENG4920"
+    ]
+  }
+}
