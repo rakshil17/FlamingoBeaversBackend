@@ -27,6 +27,14 @@ from planning_service import (
 
 app = Flask(__name__)
 
+
+@app.after_request
+def add_cors_headers(response):
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+    return response
+
 # In-memory fee plan selection (hecs / domestic / international).
 fee_plan_state: dict = {"fee_type": "hecs"}
 
@@ -137,14 +145,44 @@ def degree_options() -> tuple[dict, int]:
 
 @app.post("/planning/cheapest")
 def planning_cheapest() -> tuple[dict, int]:
+    payload = request.get_json(silent=True) or {}
+    fee_type = str(payload.get("fee_type", fee_plan_state["fee_type"])).strip().lower()
+    if fee_type not in FEE_PLAN_OPTIONS:
+        return {
+            "error": f"'fee_type' must be one of: {sorted(FEE_PLAN_OPTIONS)}"
+        }, 400
+    fee_plan_state["fee_type"] = fee_type
+
     try:
         result = build_plan(
             degree_id=DEFAULT_DEGREE_ID,
             mode="cheapest",
-            fee_type=fee_plan_state["fee_type"],
+            fee_type=fee_type,
         )
     except Exception as exc:
         return {"error": f"Failed to build cheapest plan: {exc}"}, 500
+
+    return result, 200
+
+
+@app.post("/planning/easiest")
+def planning_easiest() -> tuple[dict, int]:
+    payload = request.get_json(silent=True) or {}
+    fee_type = str(payload.get("fee_type", fee_plan_state["fee_type"])).strip().lower()
+    if fee_type not in FEE_PLAN_OPTIONS:
+        return {
+            "error": f"'fee_type' must be one of: {sorted(FEE_PLAN_OPTIONS)}"
+        }, 400
+    fee_plan_state["fee_type"] = fee_type
+
+    try:
+        result = build_plan(
+            degree_id=DEFAULT_DEGREE_ID,
+            mode="easiest",
+            fee_type=fee_type,
+        )
+    except Exception as exc:
+        return {"error": f"Failed to build easiest plan: {exc}"}, 500
 
     return result, 200
 
@@ -153,6 +191,13 @@ def planning_cheapest() -> tuple[dict, int]:
 def planning_recommended() -> tuple[dict, int]:
     payload = request.get_json(silent=True) or {}
     career_goal = str(payload.get("career_goal", "")).strip()
+    fee_type = str(payload.get("fee_type", fee_plan_state["fee_type"])).strip().lower()
+
+    if fee_type not in FEE_PLAN_OPTIONS:
+        return {
+            "error": f"'fee_type' must be one of: {sorted(FEE_PLAN_OPTIONS)}"
+        }, 400
+    fee_plan_state["fee_type"] = fee_type
 
     if not career_goal:
         return {"error": "'career_goal' is required."}, 400
@@ -162,9 +207,66 @@ def planning_recommended() -> tuple[dict, int]:
             degree_id=DEFAULT_DEGREE_ID,
             mode="recommended",
             job_interest_query=career_goal,
+            fee_type=fee_type,
         )
     except Exception as exc:
         return {"error": f"Failed to build recommended plan: {exc}"}, 500
+
+    return result, 200
+
+
+@app.post("/planning")
+@app.post("/api/planning")
+def planning() -> tuple[dict, int]:
+    payload = request.get_json(silent=True) or {}
+
+    mode = str(payload.get("mode", "recommended")).strip().lower()
+    if mode not in {"recommended", "cheapest", "easiest"}:
+        return {
+            "error": "'mode' must be one of: ['cheapest', 'easiest', 'recommended']"
+        }, 400
+
+    fee_type = str(payload.get("fee_type", fee_plan_state["fee_type"])).strip().lower()
+    if fee_type not in FEE_PLAN_OPTIONS:
+        return {
+            "error": f"'fee_type' must be one of: {sorted(FEE_PLAN_OPTIONS)}"
+        }, 400
+    fee_plan_state["fee_type"] = fee_type
+
+    if mode == "recommended":
+        career_goal = str(payload.get("career_goal", "")).strip()
+        if not career_goal:
+            return {"error": "'career_goal' is required for recommended mode."}, 400
+        try:
+            result = build_plan(
+                degree_id=DEFAULT_DEGREE_ID,
+                mode="recommended",
+                job_interest_query=career_goal,
+                fee_type=fee_type,
+            )
+        except Exception as exc:
+            return {"error": f"Failed to build recommended plan: {exc}"}, 500
+        return result, 200
+
+    if mode == "cheapest":
+        try:
+            result = build_plan(
+                degree_id=DEFAULT_DEGREE_ID,
+                mode="cheapest",
+                fee_type=fee_type,
+            )
+        except Exception as exc:
+            return {"error": f"Failed to build cheapest plan: {exc}"}, 500
+        return result, 200
+
+    try:
+        result = build_plan(
+            degree_id=DEFAULT_DEGREE_ID,
+            mode="easiest",
+            fee_type=fee_type,
+        )
+    except Exception as exc:
+        return {"error": f"Failed to build easiest plan: {exc}"}, 500
 
     return result, 200
 
