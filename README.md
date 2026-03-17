@@ -17,3 +17,5 @@ cp .env.example .env
 ```bash
 python app.py
 ```
+
+[Frontend](https://github.com/rakshil17/FlamingoBeaversFrontend)
